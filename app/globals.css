@@ -1,26 +1,248 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fbf7f3;
+  --surface: #ffffff;
+  --surface-2: #fbf5f0;
+  --foreground: #2a1d18;
+  --muted: #7c6a61;
+  --line: #efe4db;
+  --accent: #f5643c;
+  --accent-ink: #db4e28;
+  --accent-soft: #fde7de;
+  --warm: #f2a63d;
+  --warm-ink: #d97f1c;
+  --warm-soft: #fcefd9;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-warm: var(--warm);
+  --color-warm-ink: var(--warm-ink);
+  --color-warm-soft: var(--warm-soft);
+  --font-sans: var(--font-poppins);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #17110e;
+    --surface: #221812;
+    --surface-2: #281c15;
+    --foreground: #f7ece4;
+    --muted: #bda79b;
+    --line: #382a21;
+    --accent: #fb7a54;
+    --accent-ink: #fd9576;
+    --accent-soft: #2f1b12;
+    --warm: #f4b45e;
+    --warm-ink: #f8c87e;
+    --warm-soft: #2e2110;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Soft ambient wash behind the hero */
+.hero-glow {
+  background:
+    radial-gradient(720px 400px at 12% 8%, rgb(245 100 60 / 0.09), transparent 70%),
+    radial-gradient(560px 340px at 90% 18%, rgb(242 166 61 / 0.08), transparent 72%);
+}
+
+::selection {
+  background: var(--accent);
+  color: white;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ---------------- Motion system ---------------- */
+
+/* Slow-drifting ambient blobs (hero background) */
+@keyframes blob-drift {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(36px, -28px) scale(1.08); }
+  66%  { transform: translate(-24px, 20px) scale(0.95); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+.blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(70px);
+  opacity: 0.55;
+  pointer-events: none;
+  animation: blob-drift 16s ease-in-out infinite;
+}
+
+/* Gentle bobbing for floating cards */
+@keyframes float-bob {
+  0%, 100% { transform: translateY(0) rotate(var(--tilt, 0deg)); }
+  50%      { transform: translateY(-12px) rotate(var(--tilt, 0deg)); }
+}
+.float-bob {
+  animation: float-bob 7s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* Slowly shifting gradient (live preview card) */
+@keyframes gradient-drift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.gradient-live {
+  background-size: 200% 200%;
+  animation: gradient-drift 9s ease-in-out infinite;
+}
+
+/* Hero entrance — staggered via --i */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.rise {
+  opacity: 0;
+  animation: rise-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: calc(var(--i, 0) * 120ms);
+}
+
+/* Scroll reveal (driven by Reveal component) */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--rd, 0ms);
+  will-change: opacity, transform;
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Marquee benefit strip */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Sparkles when the palette completes */
+@keyframes sparkle-pop {
+  0%   { opacity: 0; transform: scale(0) rotate(0deg); }
+  45%  { opacity: 1; transform: scale(1) rotate(45deg); }
+  100% { opacity: 0; transform: scale(0.4) rotate(90deg); }
+}
+.sparkle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  background: var(--accent);
+  pointer-events: none;
+  animation: sparkle-pop 700ms ease-out var(--sd, 0ms) both;
+}
+
+/* Squiggle draw-in */
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}
+.draw-in path {
+  stroke-dasharray: 760;
+  stroke-dashoffset: 760;
+  animation: draw 1.2s ease-out 0.55s forwards;
+}
+
+/* Soft glass card (tools showcase) */
+.glass-card {
+  background: linear-gradient(150deg, rgb(255 255 255 / 0.72), rgb(255 255 255 / 0.5));
+  backdrop-filter: blur(22px) saturate(150%);
+  border: 1px solid rgb(255 255 255 / 0.65);
+  box-shadow:
+    0 24px 70px -30px rgb(43 39 80 / 0.35),
+    inset 0 1px 0 rgb(255 255 255 / 0.7);
+}
+@media (prefers-color-scheme: dark) {
+  .glass-card {
+    background: linear-gradient(150deg, rgb(255 255 255 / 0.09), rgb(255 255 255 / 0.04));
+    border: 1px solid rgb(255 255 255 / 0.14);
+    box-shadow:
+      0 24px 70px -30px rgb(0 0 0 / 0.65),
+      inset 0 1px 0 rgb(255 255 255 / 0.12);
+  }
+}
+
+/* Rotating conic ring behind glass cards */
+@keyframes ring-spin {
+  to { transform: rotate(360deg); }
+}
+.electric-ring {
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  overflow: hidden;
+  z-index: -1;
+}
+.electric-ring::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    var(--ring, var(--accent)) 55deg,
+    transparent 130deg,
+    transparent 200deg,
+    var(--ring, var(--accent)) 265deg,
+    transparent 330deg
+  );
+  opacity: 0.65;
+  animation: ring-spin 7s linear infinite;
+}
+
+/* Respect reduced motion everywhere */
+@media (prefers-reduced-motion: reduce) {
+  .blob,
+  .float-bob,
+  .gradient-live,
+  .marquee-track,
+  .electric-ring::before {
+    animation: none;
+  }
+  .rise,
+  .reveal {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  .draw-in path {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }
