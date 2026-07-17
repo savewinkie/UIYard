@@ -6,7 +6,8 @@ export const contentType = "image/png";
 export const alt =
   "UIYard — free design tools that run in your browser. No signup, nothing uploaded.";
 
-const SWATCHES = ["#f5643c", "#f2a63d", "#f6c65a", "#9ccc54", "#fbf7f3"];
+// Category colours — the share card shows the variety, not one theme.
+const SWATCHES = ["#f5643c", "#f2a63d", "#7fa650", "#2563eb", "#d85e86"];
 
 export default function OgImage() {
   return new ImageResponse(
@@ -20,8 +21,8 @@ export default function OgImage() {
           justifyContent: "space-between",
           padding: 72,
           background:
-            "radial-gradient(900px 500px at 18% 10%, #2f1b12, #17110e 65%)",
-          color: "#f7ece4",
+            "radial-gradient(900px 500px at 18% 10%, #16233f, #0d0d10 65%)",
+          color: "#ececee",
           fontFamily: "sans-serif",
         }}
       >
@@ -48,7 +49,7 @@ export default function OgImage() {
           >
             All design tools, in one yard.
           </div>
-          <div style={{ display: "flex", fontSize: 30, color: "#bda79b" }}>
+          <div style={{ display: "flex", fontSize: 30, color: "#a2a2ab" }}>
             {liveTools.length} free tools · no signup · nothing uploaded
           </div>
         </div>
@@ -66,8 +67,8 @@ export default function OgImage() {
               gap: 10,
               padding: 16,
               borderRadius: 20,
-              background: "#221812",
-              boxShadow: "0 0 60px rgba(245,100,60,0.35)",
+              background: "#18181d",
+              boxShadow: "0 0 60px rgba(37,99,235,0.3)",
             }}
           >
             {SWATCHES.map((c) => (
@@ -83,7 +84,7 @@ export default function OgImage() {
               />
             ))}
           </div>
-          <div style={{ display: "flex", fontSize: 28, color: "#fd9576" }}>
+          <div style={{ display: "flex", fontSize: 28, color: "#7fa9ff" }}>
             uiyard.com
           </div>
         </div>
