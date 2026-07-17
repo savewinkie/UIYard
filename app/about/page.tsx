@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { liveTools, tools } from "@/lib/tools";
+import { liveTools, tools, categoryOrder } from "@/lib/tools";
 import Mascot from "@/components/Mascot";
 import Squiggle from "@/components/Squiggle";
-import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "What is UIYard? The bookmark mess, and how we're fixing it",
   description:
-    "UIYard is a growing collection of free, no-signup design and developer tools. Everything runs in your browser — nothing uploaded, ever. Learn the story behind the yard.",
+    "Every small design job means another website, another signup, another upload. UIYard is the fix: one growing yard of free tools that run entirely in your browser.",
   alternates: { canonical: "/about" },
 };
+
+const PUBLISHED = "July 17, 2026";
 
 const FAQS = [
   {
@@ -37,119 +38,267 @@ const FAQS = [
 
 export default function AboutPage() {
   return (
-    <div>
-      {/* ---------- Manifesto ---------- */}
-      <section className="hero-glow">
-        <div className="mx-auto max-w-3xl px-4 py-20 text-center sm:px-6 sm:py-28">
-          <h1
-            className="rise text-[clamp(2rem,4.5vw,3.4rem)] font-bold leading-[1.08] tracking-tight"
+    <article>
+      {/* ---------- Article header ---------- */}
+      <header className="hero-glow border-b border-line">
+        <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24">
+          <div
+            className="rise flex items-center gap-3 text-sm font-medium text-muted"
             style={{ ["--i" as string]: 0 }}
           >
-            Tools should be{" "}
-            <span className="relative inline-block">
-              free
-              <Squiggle className="draw-in absolute -bottom-1.5 left-0 h-3 w-full" />
-            </span>
-            , fast and private.
-          </h1>
-          <p
-            className="rise mx-auto mt-6 max-w-xl text-lg leading-relaxed text-muted"
+            <span className="h-2 w-2 rounded-full bg-brand" />
+            <span>The yard</span>
+            <span aria-hidden="true">·</span>
+            <time dateTime="2026-07-17">{PUBLISHED}</time>
+          </div>
+
+          <h1
+            className="rise mt-6 text-[clamp(2.2rem,5vw,3.6rem)] font-bold leading-[1.06] tracking-tight"
             style={{ ["--i" as string]: 1 }}
           >
-            No signups. No ads. No uploads. Open a tool, get your answer, get
-            back to work. That&apos;s the whole deal — {liveTools.length} tools
-            and counting.
+            Fifty tabs for fifty tiny jobs — and how we&apos;re{" "}
+            <span className="relative inline-block">
+              fixing it
+              <Squiggle className="draw-in absolute -bottom-1.5 left-0 h-3 w-full" />
+            </span>
+          </h1>
+
+          <p
+            className="rise mt-7 max-w-2xl text-xl leading-relaxed text-muted"
+            style={{ ["--i" as string]: 2 }}
+          >
+            Every small design job seems to need its own website, its own popups
+            and its own “create an account” wall. UIYard is our answer: one
+            growing yard of {liveTools.length} free tools that run entirely in
+            your browser.
           </p>
         </div>
-      </section>
+      </header>
 
-      {/* ---------- The story ---------- */}
-      <section className="border-t border-line bg-surface">
-        <div className="mx-auto grid max-w-5xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[auto_1fr] lg:gap-16">
-          <Reveal>
-            <Mascot className="mx-auto h-44 w-auto lg:h-56" />
-          </Reveal>
-          <Reveal delay={100}>
-            <div>
-              <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-                The story of the yard
-              </h2>
-              <div className="mt-5 flex flex-col gap-4 leading-relaxed text-muted">
+      {/* ---------- Article body ---------- */}
+      <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
+        <div className="flex flex-col gap-12">
+          {/* The problem */}
+          <section>
+            <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+              The problem: the bookmark mess
+            </h2>
+            <div className="mt-5 flex flex-col gap-4 text-[17px] leading-relaxed text-muted">
+              <p>
+                Think about the last time you needed something small — a colour
+                palette, a quick gradient, a word count, a password. Chances are
+                each job sent you to a different website. One had an ad between
+                you and the answer. One wanted an account first. One quietly
+                uploaded your file to “process” it.
+              </p>
+              <p>
+                None of those jobs takes more than a minute. Yet makers end up
+                with fifty bookmarks for fifty tiny tools, each with its own
+                popups, paywalls and trust questions. The work is small; the
+                friction is not.
+              </p>
+            </div>
+          </section>
+
+          {/* The fix */}
+          <section>
+            <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+              The fix: one yard that grows
+            </h2>
+            <div className="mt-5 flex flex-col gap-4 text-[17px] leading-relaxed text-muted">
+              <p>
+                UIYard puts the small tools in one place and holds every one of
+                them to the same three promises:
+              </p>
+            </div>
+
+            <ul className="mt-6 flex flex-col gap-4">
+              {[
+                {
+                  title: "Free, no accounts",
+                  body: "No signups, no paywalls, no “premium” tiers. Open a tool, use it, leave.",
+                },
+                {
+                  title: "Everything runs in your browser",
+                  body: "Your text, colours, images and passwords never leave your machine. There is no server to upload to.",
+                },
+                {
+                  title: "One job, done fast",
+                  body: "Each tool does a single thing and hands you the result — usually as copy-ready CSS or a one-click copy.",
+                },
+              ].map((item) => (
+                <li
+                  key={item.title}
+                  className="rounded-2xl border border-line bg-surface p-5"
+                >
+                  <p className="font-semibold">{item.title}</p>
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-muted">
+                    {item.body}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          {/* Pull quote */}
+          <aside className="border-l-2 border-brand py-1 pl-6">
+            <p className="font-display text-xl font-semibold leading-snug sm:text-2xl">
+              Open a tool, get your answer, get back to work. That&apos;s the
+              whole deal.
+            </p>
+          </aside>
+
+          {/* How it works */}
+          <section>
+            <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+              How the yard works
+            </h2>
+            <div className="mt-5 flex flex-col gap-4 text-[17px] leading-relaxed text-muted">
+              <p>
+                The yard currently spans {categoryOrder.length} categories —
+                colour, CSS, text, coding, images, typography, accessibility,
+                generators, converters and social — with {liveTools.length}{" "}
+                tools live and {tools.length - liveTools.length} more already
+                planted. Cards marked <em>Soon</em> aren&apos;t placeholders for
+                show; they&apos;re the actual queue, and they open up one by one.
+              </p>
+              <p>
+                What grows next isn&apos;t decided by a roadmap committee.
+                It&apos;s decided by requests: if you&apos;re missing a tool,{" "}
+                <a
+                  href="mailto:link.bernath5@gmail.com?subject=UIYard tool request"
+                  className="font-medium text-accent underline-offset-4 hover:underline"
+                >
+                  tell us what job you need done
+                </a>{" "}
+                and it goes in the ground. Everything that opens is logged in
+                the{" "}
+                <Link
+                  href="/whats-growing"
+                  className="font-medium text-accent underline-offset-4 hover:underline"
+                >
+                  growth diary
+                </Link>
+                .
+              </p>
+            </div>
+          </section>
+
+          {/* The name */}
+          <section>
+            <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+              Why “UIYard”? And who&apos;s the sprout?
+            </h2>
+            <div className="mt-5 flex flex-col items-start gap-6 sm:flex-row sm:gap-8">
+              <Mascot className="h-32 w-auto shrink-0 sm:h-40" />
+              <div className="flex flex-col gap-4 text-[17px] leading-relaxed text-muted">
                 <p>
-                  UIYard started with an annoyance every maker knows: needing
-                  ten different websites for ten tiny jobs — one for palettes,
-                  one for gradients, one to count words — each buried under
-                  ads, popups and “create an account” walls.
+                  A yard is the opposite of a product launch. Nothing arrives
+                  finished — things get planted, they grow, and the yard is
+                  never “done”. That&apos;s exactly how this site works, so the
+                  name stuck.
                 </p>
                 <p>
-                  So we started planting a yard instead. One place where small,
-                  sharp tools grow — each one does a single job, does it fast,
-                  and hands you the result. The little sprout you see around
-                  the site is the gardener; the “Soon” cards are seeds already
-                  in the ground.
-                </p>
-                <p>
-                  It&apos;s built and designed by Link, one tool at a time, and
-                  it&apos;s never finished — that&apos;s the point. Yards grow.
+                  The little sprout is the gardener. He shows up when you hit a
+                  dead end — an empty search, a missing page — and he&apos;s
+                  the reminder that this whole place is tended by a person:
+                  UIYard is built and designed by Link, one tool at a time.
                 </p>
               </div>
             </div>
-          </Reveal>
-        </div>
-      </section>
+          </section>
 
-      {/* ---------- FAQ ---------- */}
-      <section className="border-t border-line">
-        <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-          <Reveal>
-            <h2 className="text-center text-2xl font-semibold tracking-tight sm:text-3xl">
-              Questions people ask
+          {/* What's next */}
+          <section>
+            <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+              What&apos;s next
             </h2>
-          </Reveal>
-          <div className="mt-8 flex flex-col gap-3">
-            {FAQS.map((faq, i) => (
-              <Reveal key={faq.q} delay={i * 60}>
-                <details className="group rounded-2xl border border-line bg-surface px-5 py-4 transition-colors open:border-accent/40">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[15px] font-semibold [&::-webkit-details-marker]:hidden">
-                    {faq.q}
-                    <span className="text-accent transition-transform group-open:rotate-45">
-                      +
-                    </span>
-                  </summary>
-                  <p className="mt-3 text-sm leading-relaxed text-muted">{faq.a}</p>
-                </details>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal>
-            <div className="mt-12 text-center">
+            <div className="mt-5 flex flex-col gap-4 text-[17px] leading-relaxed text-muted">
+              <p>
+                More tools, every week — that&apos;s the only roadmap. The
+                fastest way to see the newest arrivals is the{" "}
+                <Link
+                  href="/whats-growing"
+                  className="font-medium text-accent underline-offset-4 hover:underline"
+                >
+                  growth diary
+                </Link>
+                ; the fastest way to get value out of the yard is to just start
+                using it.
+              </p>
+            </div>
+            <div className="mt-7 flex flex-wrap items-center gap-3">
               <Link
                 href="/tools"
                 className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_14px_30px_-12px_rgb(17_24_39_/_0.28)] transition-[transform,box-shadow,border-color,color] hover:-translate-y-0.5"
               >
                 Explore all {liveTools.length} tools →
               </Link>
+              <Link
+                href="/whats-growing"
+                className="inline-flex items-center gap-2 rounded-full border-2 border-line bg-surface px-6 py-3 text-[15px] font-semibold text-accent transition-[transform,box-shadow,border-color,color] hover:-translate-y-0.5 hover:border-accent/40"
+              >
+                See what&apos;s growing
+              </Link>
             </div>
-          </Reveal>
-        </div>
-      </section>
+          </section>
 
-      {/* FAQ structured data — how search engines & AI assistants read this page */}
+          {/* FAQ */}
+          <section className="border-t border-line pt-12">
+            <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+              Questions people ask
+            </h2>
+            <div className="mt-6 flex flex-col gap-3">
+              {FAQS.map((faq) => (
+                <details
+                  key={faq.q}
+                  className="group rounded-2xl border border-line bg-surface px-5 py-4 transition-colors open:border-accent/40"
+                >
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[15px] font-semibold [&::-webkit-details-marker]:hidden">
+                    {faq.q}
+                    <span className="text-accent transition-transform group-open:rotate-45">
+                      +
+                    </span>
+                  </summary>
+                  <p className="mt-3 text-sm leading-relaxed text-muted">
+                    {faq.a}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </section>
+        </div>
+      </div>
+
+      {/* Structured data: the article itself + the FAQ */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: FAQS.map((f) => ({
-              "@type": "Question",
-              name: f.q,
-              acceptedAnswer: { "@type": "Answer", text: f.a },
-            })),
-          }),
+          __html: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "Article",
+              headline:
+                "Fifty tabs for fifty tiny jobs — and how we're fixing it",
+              description:
+                "Why every small design job costs a signup, an ad and an upload — and how UIYard fixes it with one growing yard of free, browser-only tools.",
+              datePublished: "2026-07-17",
+              author: { "@type": "Person", name: "Link" },
+              publisher: { "@type": "Organization", name: "UIYard" },
+              mainEntityOfPage: "https://uiyard.com/about",
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: FAQS.map((f) => ({
+                "@type": "Question",
+                name: f.q,
+                acceptedAnswer: { "@type": "Answer", text: f.a },
+              })),
+            },
+          ]),
         }}
       />
-    </div>
+    </article>
   );
 }
