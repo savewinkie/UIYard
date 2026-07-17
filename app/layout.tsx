@@ -3,6 +3,7 @@ import { Poppins, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PaletteSwitcher from "@/components/PaletteSwitcher";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -47,6 +48,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        {process.env.NODE_ENV === "development" && <PaletteSwitcher />}
         {/* Site-level structured data for search engines & AI assistants */}
         <script
           type="application/ld+json"
