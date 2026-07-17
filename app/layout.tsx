@@ -1,14 +1,21 @@
 import type { Metadata } from "next";
-import { Poppins, Geist_Mono } from "next/font/google";
+import { Manrope, Space_Grotesk, Geist_Mono } from "next/font/google";
+import { cookies } from "next/headers";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import PaletteSwitcher from "@/components/PaletteSwitcher";
+import CookieConsent from "@/components/CookieConsent";
 
-const poppins = Poppins({
-  variable: "--font-poppins",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -34,22 +41,25 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Light is the default (like 10015). Dark is opt-in and remembered in a cookie.
+  const theme = (await cookies()).get("uiyard-theme")?.value;
+  const isDark = theme === "dark";
+
   return (
     <html
       lang="en"
-      className={`${poppins.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${manrope.variable} ${spaceGrotesk.variable} ${geistMono.variable} h-full antialiased ${isDark ? "dark" : ""}`}
     >
       <body className="min-h-full flex flex-col">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
-        {process.env.NODE_ENV === "development" && <PaletteSwitcher />}
-        {/* Site-level structured data for search engines & AI assistants */}
+        <CookieConsent />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

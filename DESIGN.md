@@ -9,10 +9,16 @@ git history (`Bake researched colour system`).
 Neutral chrome. Ink text. One action colour. Colour variety comes from
 categories and tool content — **never from the theme**.
 
+**Light is the default** (like 10015.io) even on a dark OS. Dark mode is opt-in
+via the header toggle, remembered in the `uiyard-theme` cookie and rendered
+server-side (no flash). `dark:` utilities and `.dark …` CSS follow the `.dark`
+class, never `prefers-color-scheme`. Fonts: **Manrope** body, **Space Grotesk**
+display (headings + `.font-display`).
+
 | Role | Token | Light | Dark | Allowed on |
 |---|---|---|---|---|
-| Chrome | `--background` / `--surface` / `--surface-2` | `#fafafa` / `#ffffff` / `#f4f4f5` | `#0d0d10` / `#18181d` / `#1f1f25` | everything structural |
-| Text | `--foreground` / `--muted` | `#1a1a1e` / `#6b7280` | `#ececee` / `#a2a2ab` | all content text |
+| Chrome | `--background` / `--surface` / `--surface-2` | `#f8f9fb` / `#ffffff` / `#f2f3f7` | `#16171c` / `#202128` / `#272831` | everything structural |
+| Text | `--foreground` / `--muted` | `#23252f` / `#62667a` | `#eceef4` / `#9ea3b5` | all content text |
 | Action | `--accent` (+ `-ink`, `-soft`) | `#2563eb` | `#3b82f6` | buttons, links, focus rings — **only** |
 | Highlight | `--warm` (+ `-ink`, `-soft`) | `#f2a63d` | `#f4b45e` | badges, small accents |
 | Brand | `--brand` (+ `-ink`, `-soft`) | `#f5643c` | `#fb7a54` | logo, Sprout, squiggle, kicker dot — **only** |

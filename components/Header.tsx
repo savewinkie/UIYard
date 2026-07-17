@@ -1,6 +1,7 @@
 import Link from "next/link";
 import SearchDropdown from "@/components/SearchDropdown";
 import CategoriesMenu from "@/components/CategoriesMenu";
+import ThemeToggle from "@/components/ThemeToggle";
 import Logo from "@/components/Logo";
 
 export default function Header() {
@@ -32,6 +33,7 @@ export default function Header() {
           >
             Request a tool
           </a>
+          <ThemeToggle />
           <Link
             href="/tools"
             className="ml-1 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white transition-transform hover:scale-[1.03]"
