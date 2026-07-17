@@ -73,7 +73,7 @@ export default function HeroScene() {
 
       {/* the palette bar — built in code so it can actually fill up */}
       <div
-        className="absolute right-[2%] top-[2%] rounded-2xl border border-line bg-surface p-2.5 shadow-[0_16px_40px_-18px_rgb(42_29_24_/_0.35)] transition-all duration-500 sm:right-0"
+        className="absolute right-[2%] top-[2%] rounded-2xl border border-line bg-surface p-2.5 shadow-[0_16px_40px_-18px_rgb(42_29_24_/_0.35)] transition-[transform,box-shadow,border-color,color] duration-500 sm:right-0"
         style={{
           transform: celebrating ? "translateY(-4px) scale(1.04)" : "none",
           borderColor: celebrating ? "var(--accent)" : "var(--line)",

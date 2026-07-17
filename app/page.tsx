@@ -64,13 +64,13 @@ export default function Home() {
               <div className="rise mt-9 flex flex-wrap items-center gap-3" style={{ ["--i" as string]: 3 }}>
                 <Link
                   href="/tools"
-                  className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_14px_30px_-12px_rgb(17_24_39_/_0.28)] transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_36px_-12px_rgb(17_24_39_/_0.32)]"
+                  className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_14px_30px_-12px_rgb(17_24_39_/_0.28)] transition-[transform,box-shadow,border-color,color] hover:-translate-y-0.5 hover:shadow-[0_18px_36px_-12px_rgb(17_24_39_/_0.32)]"
                 >
                   Explore tools →
                 </Link>
                 <Link
                   href="/about"
-                  className="inline-flex items-center gap-2 rounded-full border-2 border-line bg-surface px-6 py-3 text-[15px] font-semibold text-accent transition-all hover:-translate-y-0.5 hover:border-accent/40"
+                  className="inline-flex items-center gap-2 rounded-full border-2 border-line bg-surface px-6 py-3 text-[15px] font-semibold text-accent transition-[transform,box-shadow,border-color,color] hover:-translate-y-0.5 hover:border-accent/40"
                 >
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
                     <circle cx="12" cy="12" r="9" />
@@ -90,7 +90,7 @@ export default function Home() {
                     <Link
                       key={tool.slug}
                       href={`/tools/${tool.slug}`}
-                      className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3.5 py-1.5 text-[13px] font-medium text-muted transition-all hover:-translate-y-0.5 hover:border-accent/40 hover:text-accent"
+                      className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3.5 py-1.5 text-[13px] font-medium text-muted transition-[transform,box-shadow,border-color,color] hover:-translate-y-0.5 hover:border-accent/40 hover:text-accent"
                     >
                       <span
                         className="grid h-5 w-5 place-items-center rounded-md"
@@ -158,7 +158,7 @@ export default function Home() {
               <Reveal key={cat} delay={i * 70}>
                 <Link
                   href={`/tools?q=${cat}`}
-                  className="group flex h-full items-center gap-4 rounded-2xl border border-line bg-surface p-5 transition-all hover:-translate-y-1 hover:shadow-[0_18px_40px_-24px_rgb(17_24_39_/_0.22)]"
+                  className="group flex h-full items-center gap-4 rounded-2xl border border-line bg-surface p-5 transition-[transform,box-shadow,border-color,color] hover:-translate-y-1 hover:shadow-[0_18px_40px_-24px_rgb(17_24_39_/_0.22)]"
                 >
                   <span
                     className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl transition-transform group-hover:scale-110"
@@ -313,7 +313,7 @@ export default function Home() {
               </p>
               <Link
                 href="/tools"
-                className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_14px_30px_-12px_rgb(17_24_39_/_0.28)] transition-all hover:-translate-y-0.5"
+                className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_14px_30px_-12px_rgb(17_24_39_/_0.28)] transition-[transform,box-shadow,border-color,color] hover:-translate-y-0.5"
               >
                 Browse all {liveTools.length} tools →
               </Link>

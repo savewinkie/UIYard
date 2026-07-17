@@ -67,7 +67,7 @@ export default function PaletteSwitcher() {
     const tokens = dark ? p.dark : p.light;
     const root = document.documentElement;
 
-    // Elements using `transition-all` animate background-color too, and an
+    // Elements using `transition-[transform,box-shadow,border-color,color]` animate background-color too, and an
     // unregistered custom property isn't interpolatable — so the transition
     // stalls holding the OLD colour and never repaints. Kill transitions for
     // the frame of the swap, then hand them back.
@@ -81,6 +81,9 @@ export default function PaletteSwitcher() {
     requestAnimationFrame(() =>
       requestAnimationFrame(() => freeze.remove())
     );
+    // rAF can be throttled/dead (background tabs, embedded panes) — make sure
+    // the freeze never outlives the swap regardless.
+    setTimeout(() => freeze.remove(), 120);
   }, []);
 
   useEffect(() => {

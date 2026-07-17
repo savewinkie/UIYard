@@ -74,7 +74,7 @@ export default function PasswordGenerator() {
         </p>
         <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-background">
           <div
-            className="h-full rounded-full transition-all duration-300"
+            className="h-full rounded-full transition-[transform,box-shadow,border-color,color] duration-300"
             style={{ width: `${strength.pct}%`, background: strength.color }}
           />
         </div>

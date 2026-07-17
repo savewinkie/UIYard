@@ -159,7 +159,7 @@ export default function CssLoaderGenerator() {
           <button
             key={l.id}
             onClick={() => setActive(l.id)}
-            className={`flex flex-col items-center gap-3 rounded-2xl border p-5 transition-all ${
+            className={`flex flex-col items-center gap-3 rounded-2xl border p-5 transition-[transform,box-shadow,border-color,color] ${
               active === l.id
                 ? "border-accent bg-accent-soft/50 shadow-[0_14px_30px_-18px_rgb(17_24_39_/_0.25)]"
                 : "border-line bg-surface hover:border-accent/40"

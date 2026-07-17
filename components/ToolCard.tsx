@@ -56,7 +56,7 @@ export default function ToolCard({ tool }: { tool: Tool }) {
   return (
     <Link
       href={`/tools/${tool.slug}`}
-      className="group relative flex flex-col gap-3 rounded-3xl border border-line bg-surface p-6 transition-all duration-200 hover:-translate-y-1 hover:border-accent/30 hover:shadow-[0_18px_40px_-20px_rgb(17_24_39_/_0.22)]"
+      className="group relative flex flex-col gap-3 rounded-3xl border border-line bg-surface p-6 transition-[transform,box-shadow,border-color,color] duration-200 hover:-translate-y-1 hover:border-accent/30 hover:shadow-[0_18px_40px_-20px_rgb(17_24_39_/_0.22)]"
     >
       {inner}
     </Link>

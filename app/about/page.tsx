@@ -126,7 +126,7 @@ export default function AboutPage() {
             <div className="mt-12 text-center">
               <Link
                 href="/tools"
-                className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_14px_30px_-12px_rgb(17_24_39_/_0.28)] transition-all hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_14px_30px_-12px_rgb(17_24_39_/_0.28)] transition-[transform,box-shadow,border-color,color] hover:-translate-y-0.5"
               >
                 Explore all {liveTools.length} tools →
               </Link>

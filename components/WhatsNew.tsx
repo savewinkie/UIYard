@@ -32,7 +32,7 @@ export default function WhatsNew() {
             <Reveal key={tool.slug} delay={i * 70}>
               <Link
                 href={`/tools/${tool.slug}`}
-                className="group flex h-full flex-col gap-2.5 rounded-2xl border border-line bg-surface p-5 transition-all hover:-translate-y-1 hover:border-accent/30 hover:shadow-[0_18px_40px_-20px_rgb(17_24_39_/_0.22)]"
+                className="group flex h-full flex-col gap-2.5 rounded-2xl border border-line bg-surface p-5 transition-[transform,box-shadow,border-color,color] hover:-translate-y-1 hover:border-accent/30 hover:shadow-[0_18px_40px_-20px_rgb(17_24_39_/_0.22)]"
               >
                 <span
                   className="grid h-10 w-10 place-items-center rounded-xl"

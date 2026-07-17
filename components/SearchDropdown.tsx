@@ -76,7 +76,7 @@ export default function SearchDropdown({
           onFocus={() => setOpen(true)}
           placeholder="Search tools…"
           aria-label="Search tools"
-          className="w-full rounded-2xl border border-line bg-surface py-2.5 pl-11 pr-4 text-sm font-medium outline-none transition-all placeholder:text-muted focus:border-accent/60 focus:shadow-[0_0_0_3px_var(--accent-soft)]"
+          className="w-full rounded-2xl border border-line bg-surface py-2.5 pl-11 pr-4 text-sm font-medium outline-none transition-[transform,box-shadow,border-color,color] placeholder:text-muted focus:border-accent/60 focus:shadow-[0_0_0_3px_var(--accent-soft)]"
         />
       </form>
 
