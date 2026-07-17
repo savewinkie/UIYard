@@ -161,7 +161,7 @@ export default function CssLoaderGenerator() {
             onClick={() => setActive(l.id)}
             className={`flex flex-col items-center gap-3 rounded-2xl border p-5 transition-all ${
               active === l.id
-                ? "border-accent bg-accent-soft/50 shadow-[0_14px_30px_-18px_rgb(245_100_60_/_0.5)]"
+                ? "border-accent bg-accent-soft/50 shadow-[0_14px_30px_-18px_rgb(17_24_39_/_0.25)]"
                 : "border-line bg-surface hover:border-accent/40"
             }`}
           >

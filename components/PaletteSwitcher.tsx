@@ -26,7 +26,12 @@ const T = (
 
 const PALETTES: Palette[] = [
   {
-    id: "coral", label: "Coral", note: "warm, friendly (current)", dot: "#f5643c",
+    id: "uiyard", label: "UIYard system", note: "graphite + cobalt (research pick)", dot: "#2563eb",
+    light: T("#fafafa","#ffffff","#f4f4f5","#1a1a1e","#6b7280","#e5e5e8","#2563eb","#1d4ed8","#e8effe","#f2a63d","#b45309","#fdf1dc"),
+    dark:  T("#0d0d10","#18181d","#1f1f25","#ececee","#a2a2ab","#2a2a31","#3b82f6","#7fa9ff","#16233f","#f4b45e","#f8c87e","#2b2110"),
+  },
+  {
+    id: "coral", label: "Coral", note: "warm, friendly (old)", dot: "#f5643c",
     light: T("#fbf7f3","#ffffff","#fbf5f0","#2a1d18","#7c6a61","#efe4db","#f5643c","#db4e28","#fde7de","#f2a63d","#d97f1c","#fcefd9"),
     dark:  T("#17110e","#221812","#281c15","#f7ece4","#bda79b","#382a21","#fb7a54","#fd9576","#2f1b12","#f4b45e","#f8c87e","#2e2110"),
   },
@@ -53,7 +58,7 @@ const PALETTES: Palette[] = [
 ];
 
 export default function PaletteSwitcher() {
-  const [active, setActive] = useState("coral");
+  const [active, setActive] = useState("uiyard");
   const [open, setOpen] = useState(true);
 
   const paint = useCallback((id: string) => {
@@ -79,17 +84,17 @@ export default function PaletteSwitcher() {
   }, []);
 
   useEffect(() => {
-    const saved = localStorage.getItem("uiyard-palette") || "coral";
+    const saved = localStorage.getItem("uiyard-palette-v2") || "uiyard";
     setActive(saved);
     paint(saved);
     const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    const onScheme = () => paint(localStorage.getItem("uiyard-palette") || "coral");
+    const onScheme = () => paint(localStorage.getItem("uiyard-palette-v2") || "uiyard");
     mq.addEventListener("change", onScheme);
     return () => mq.removeEventListener("change", onScheme);
   }, [paint]);
 
   function pick(id: string) {
-    localStorage.setItem("uiyard-palette", id);
+    localStorage.setItem("uiyard-palette-v2", id);
     setActive(id);
     paint(id);
   }

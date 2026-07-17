@@ -1,18 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fbf7f3;
+  /* Graphite chrome — the working surface stays colourless (research: 10015,
+     Coolors, every pro design tool). Colour comes from actions, categories
+     and the content itself, never the theme. */
+  --background: #fafafa;
   --surface: #ffffff;
-  --surface-2: #fbf5f0;
-  --foreground: #2a1d18;
-  --muted: #7c6a61;
-  --line: #efe4db;
-  --accent: #f5643c;
-  --accent-ink: #db4e28;
-  --accent-soft: #fde7de;
+  --surface-2: #f4f4f5;
+  --foreground: #1a1a1e;
+  --muted: #6b7280;
+  --line: #e5e5e8;
+  /* Cobalt — actions only (buttons, links). Same register Coolors uses. */
+  --accent: #2563eb;
+  --accent-ink: #1d4ed8;
+  --accent-soft: #e8effe;
+  /* Amber — badges & highlights */
   --warm: #f2a63d;
-  --warm-ink: #d97f1c;
-  --warm-soft: #fcefd9;
+  --warm-ink: #b45309;
+  --warm-soft: #fdf1dc;
+  /* Coral — brand pop ONLY (logo, Sprout, squiggle). Never UI chrome. */
+  --brand: #f5643c;
+  --brand-ink: #db4e28;
+  --brand-soft: #fde7de;
 }
 
 @theme inline {
@@ -28,24 +37,30 @@
   --color-warm: var(--warm);
   --color-warm-ink: var(--warm-ink);
   --color-warm-soft: var(--warm-soft);
+  --color-brand: var(--brand);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-soft: var(--brand-soft);
   --font-sans: var(--font-poppins);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #17110e;
-    --surface: #221812;
-    --surface-2: #281c15;
-    --foreground: #f7ece4;
-    --muted: #bda79b;
-    --line: #382a21;
-    --accent: #fb7a54;
-    --accent-ink: #fd9576;
-    --accent-soft: #2f1b12;
+    --background: #0d0d10;
+    --surface: #18181d;
+    --surface-2: #1f1f25;
+    --foreground: #ececee;
+    --muted: #a2a2ab;
+    --line: #2a2a31;
+    --accent: #3b82f6;
+    --accent-ink: #7fa9ff;
+    --accent-soft: #16233f;
     --warm: #f4b45e;
     --warm-ink: #f8c87e;
-    --warm-soft: #2e2110;
+    --warm-soft: #2b2110;
+    --brand: #fb7a54;
+    --brand-ink: #fd9576;
+    --brand-soft: #2f1b12;
   }
 }
 
@@ -55,11 +70,11 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
-/* Soft ambient wash behind the hero */
+/* Soft ambient wash behind the hero — neutral-cool, so content colour pops */
 .hero-glow {
   background:
-    radial-gradient(720px 400px at 12% 8%, rgb(245 100 60 / 0.09), transparent 70%),
-    radial-gradient(560px 340px at 90% 18%, rgb(242 166 61 / 0.08), transparent 72%);
+    radial-gradient(720px 400px at 12% 8%, rgb(37 99 235 / 0.06), transparent 70%),
+    radial-gradient(560px 340px at 90% 18%, rgb(242 166 61 / 0.05), transparent 72%);
 }
 
 ::selection {

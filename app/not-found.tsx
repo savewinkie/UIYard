@@ -38,7 +38,7 @@ export default function NotFound() {
         >
           <Link
             href="/tools"
-            className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_14px_30px_-12px_rgb(245_100_60_/_0.55)] transition-all hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_14px_30px_-12px_rgb(17_24_39_/_0.28)] transition-all hover:-translate-y-0.5"
           >
             Browse all {liveTools.length} tools →
           </Link>

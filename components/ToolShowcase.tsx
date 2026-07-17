@@ -164,7 +164,7 @@ function StackCard({ tool, index, total }: { tool: Tool; index: number; total: n
               <p className="mt-3 max-w-sm text-base leading-relaxed text-muted sm:text-lg">{tool.tagline}</p>
               <Link
                 href={`/tools/${tool.slug}`}
-                className="mt-7 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-[15px] font-semibold text-white shadow-[0_14px_30px_-12px_rgb(245_100_60_/_0.5)] transition-all hover:-translate-y-0.5"
+                className="mt-7 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-[15px] font-semibold text-white shadow-[0_14px_30px_-12px_rgb(17_24_39_/_0.28)] transition-all hover:-translate-y-0.5"
               >
                 Open tool →
               </Link>

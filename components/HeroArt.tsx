@@ -6,7 +6,7 @@ export default function HeroArt() {
       {/* ambient blobs */}
       <div
         className="blob left-[-10%] top-[-6%] h-56 w-56"
-        style={{ background: "rgb(245 100 60 / 0.34)" }}
+        style={{ background: "rgb(37 99 235 / 0.28)" }}
       />
       <div
         className="blob bottom-[-8%] right-[-6%] h-48 w-48"
@@ -34,14 +34,14 @@ export default function HeroArt() {
         style={{ ["--tilt" as string]: "-3deg", ["--delay" as string]: "-5s" }}
       >
         <div className="grid h-16 place-items-center rounded-2xl bg-surface-2 sm:h-24">
-          <div className="h-9 w-20 rounded-xl bg-surface shadow-[0_12px_24px_-6px_rgb(245_100_60_/_0.4)] sm:h-12 sm:w-28" />
+          <div className="h-9 w-20 rounded-xl bg-surface shadow-[0_12px_24px_-6px_rgb(37_99_235_/_0.3)] sm:h-12 sm:w-28" />
         </div>
         <p className="mt-2.5 px-1 text-xs font-medium text-muted">Shadow</p>
       </div>
 
       {/* Palette card — front, center */}
       <div
-        className="float-bob absolute left-1/2 top-1/2 w-52 -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-line bg-surface p-4 shadow-[0_28px_55px_-24px_rgb(245_100_60_/_0.45)] sm:w-64"
+        className="float-bob absolute left-1/2 top-1/2 w-52 -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-line bg-surface p-4 shadow-[0_28px_55px_-24px_rgb(17_24_39_/_0.25)] sm:w-64"
         style={{ ["--tilt" as string]: "-1.5deg" }}
       >
         <div className="flex items-center justify-between px-1 pb-3">

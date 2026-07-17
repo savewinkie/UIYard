@@ -35,7 +35,8 @@ export default function Home() {
             </div>
 
             <div className="order-1">
-              <p className="rise text-sm font-medium text-accent" style={{ ["--i" as string]: 0 }}>
+              <p className="rise flex items-center gap-2 text-sm font-medium text-muted" style={{ ["--i" as string]: 0 }}>
+                <span className="h-2 w-2 rounded-full bg-brand" />
                 Free design tools · no signup
               </p>
               <h1
@@ -63,7 +64,7 @@ export default function Home() {
               <div className="rise mt-9 flex flex-wrap items-center gap-3" style={{ ["--i" as string]: 3 }}>
                 <Link
                   href="/tools"
-                  className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_14px_30px_-12px_rgb(245_100_60_/_0.55)] transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_36px_-12px_rgb(245_100_60_/_0.6)]"
+                  className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_14px_30px_-12px_rgb(17_24_39_/_0.28)] transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_36px_-12px_rgb(17_24_39_/_0.32)]"
                 >
                   Explore tools →
                 </Link>
@@ -157,7 +158,7 @@ export default function Home() {
               <Reveal key={cat} delay={i * 70}>
                 <Link
                   href={`/tools?q=${cat}`}
-                  className="group flex h-full items-center gap-4 rounded-2xl border border-line bg-surface p-5 transition-all hover:-translate-y-1 hover:shadow-[0_18px_40px_-24px_rgb(245_100_60_/_0.35)]"
+                  className="group flex h-full items-center gap-4 rounded-2xl border border-line bg-surface p-5 transition-all hover:-translate-y-1 hover:shadow-[0_18px_40px_-24px_rgb(17_24_39_/_0.22)]"
                 >
                   <span
                     className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl transition-transform group-hover:scale-110"
@@ -297,7 +298,7 @@ export default function Home() {
           <div className="relative overflow-hidden rounded-[2rem] border border-line bg-surface px-8 py-14 text-center">
             <div
               className="blob left-[8%] top-[-30%] h-44 w-44"
-              style={{ background: "rgb(245 100 60 / 0.18)" }}
+              style={{ background: "rgb(37 99 235 / 0.14)" }}
             />
             <div
               className="blob bottom-[-35%] right-[10%] h-44 w-44"
@@ -312,7 +313,7 @@ export default function Home() {
               </p>
               <Link
                 href="/tools"
-                className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_14px_30px_-12px_rgb(245_100_60_/_0.55)] transition-all hover:-translate-y-0.5"
+                className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_14px_30px_-12px_rgb(17_24_39_/_0.28)] transition-all hover:-translate-y-0.5"
               >
                 Browse all {liveTools.length} tools →
               </Link>

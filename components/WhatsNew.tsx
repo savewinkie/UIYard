@@ -11,7 +11,7 @@ export default function WhatsNew() {
       <Reveal>
         <div className="flex items-end justify-between gap-4">
           <div>
-            <p className="text-sm font-medium text-accent">🌱 Freshly planted</p>
+            <p className="text-sm font-medium text-muted">🌱 Freshly planted</p>
             <h2 className="mt-1 text-xl font-semibold tracking-tight sm:text-2xl">
               New in the yard
             </h2>
@@ -32,7 +32,7 @@ export default function WhatsNew() {
             <Reveal key={tool.slug} delay={i * 70}>
               <Link
                 href={`/tools/${tool.slug}`}
-                className="group flex h-full flex-col gap-2.5 rounded-2xl border border-line bg-surface p-5 transition-all hover:-translate-y-1 hover:border-accent/30 hover:shadow-[0_18px_40px_-20px_rgb(245_100_60_/_0.35)]"
+                className="group flex h-full flex-col gap-2.5 rounded-2xl border border-line bg-surface p-5 transition-all hover:-translate-y-1 hover:border-accent/30 hover:shadow-[0_18px_40px_-20px_rgb(17_24_39_/_0.22)]"
               >
                 <span
                   className="grid h-10 w-10 place-items-center rounded-xl"

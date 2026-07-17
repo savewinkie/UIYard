@@ -8,7 +8,7 @@ export default function Header() {
     <header className="sticky top-0 z-40 border-b border-line bg-surface/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center gap-3 px-4 sm:gap-4 sm:px-6">
         <Link href="/" className="flex shrink-0 items-center gap-2.5">
-          <Logo className="h-9 w-9 text-accent" />
+          <Logo className="h-9 w-9 text-brand" />
           <span className="hidden text-lg font-bold tracking-tight sm:block">
             UIYard
           </span>

@@ -33,7 +33,7 @@ export default function HeroScene() {
       <div
         className="blob left-[6%] top-[12%] h-56 w-56 transition-opacity duration-500"
         style={{
-          background: "rgb(245 100 60 / 0.3)",
+          background: "rgb(37 99 235 / 0.26)",
           opacity: celebrating ? 0.9 : 0.4,
         }}
       />
@@ -51,8 +51,8 @@ export default function HeroScene() {
         className="relative"
         style={{
           filter: celebrating
-            ? "drop-shadow(0 0 26px rgb(245 100 60 / 0.45)) drop-shadow(0 0 60px rgb(242 166 61 / 0.3))"
-            : "drop-shadow(0 0 0 rgb(245 100 60 / 0))",
+            ? "drop-shadow(0 0 26px rgb(37 99 235 / 0.4)) drop-shadow(0 0 60px rgb(242 166 61 / 0.3))"
+            : "drop-shadow(0 0 0 rgb(37 99 235 / 0))",
           transform: celebrating ? "translateY(-6px) scale(1.012)" : "none",
           transition:
             "filter 420ms cubic-bezier(.22,1,.36,1), transform 420ms cubic-bezier(.22,1,.36,1)",
