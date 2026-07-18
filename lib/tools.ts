@@ -209,8 +209,42 @@ export const tools: Tool[] = [
   { slug: "css-clip-path", name: "Clip-Path Maker", tagline: "Cut shapes out of any element.", category: "css", status: "soon", seoTitle: "CSS Clip-Path Generator", seoDescription: "Visually build polygon clip-paths and copy the CSS.", addedAt: "2026-07-16" },
   { slug: "css-background-pattern", name: "Background Patterns", tagline: "Subtle CSS-only page textures.", category: "css", status: "soon", seoTitle: "CSS Background Pattern Generator", seoDescription: "Pick a repeating CSS background pattern and copy the code.", addedAt: "2026-07-16" },
   { slug: "css-triangle", name: "CSS Triangle Generator", tagline: "Arrows and carets from pure CSS.", category: "css", status: "soon", seoTitle: "CSS Triangle Generator", seoDescription: "Generate triangles and carets with the border trick.", addedAt: "2026-07-16" },
-  { slug: "cubic-bezier", name: "Easing Editor", tagline: "Draw the perfect cubic-bezier curve.", category: "css", status: "soon", seoTitle: "CSS Cubic Bezier Easing Editor", seoDescription: "Design custom CSS easing curves and copy the cubic-bezier.", addedAt: "2026-07-16" },
-  { slug: "css-grid-generator", name: "CSS Grid Generator", tagline: "Lay out a grid, copy the CSS.", category: "css", status: "soon", seoTitle: "CSS Grid Generator", seoDescription: "Build a CSS grid visually and copy the code.", addedAt: "2026-07-16" },
+  {
+    slug: "cubic-bezier",
+    name: "Easing Editor",
+    tagline: "Drag the curve, copy the cubic-bezier.",
+    category: "css",
+    status: "live",
+    seoTitle: "CSS Cubic Bezier Easing Editor — Custom Animation Curves",
+    seoDescription:
+      "Design custom CSS easing curves by dragging the control points, preview the motion live, and copy the cubic-bezier. Free, no signup, runs in your browser.",
+    addedAt: "2026-07-19",
+    about:
+      "The default CSS easings are fine, but the good stuff lives in custom curves. Drag the two handles to shape the curve, watch a live demo animate with it, and copy the exact cubic-bezier.",
+    howTo: [
+      "Drag the two coloured handles to shape the curve — or pick a preset.",
+      "Watch the demo box animate with your easing.",
+      "Copy the transition-timing-function.",
+    ],
+  },
+  {
+    slug: "css-grid-generator",
+    name: "CSS Grid Generator",
+    tagline: "Lay out a grid, copy the CSS.",
+    category: "css",
+    status: "live",
+    seoTitle: "CSS Grid Generator — Build Grid Layouts Visually",
+    seoDescription:
+      "Set columns, rows and gap, see the grid live, and copy clean CSS Grid code. Free, no signup, runs in your browser.",
+    addedAt: "2026-07-19",
+    about:
+      "CSS Grid is powerful but the syntax is easy to forget. Set your columns, rows and gap, watch the grid build live, and copy the code straight into your stylesheet.",
+    howTo: [
+      "Set the number of columns and rows.",
+      "Adjust the gap between cells.",
+      "Copy the generated CSS Grid code.",
+    ],
+  },
 
   // ======================= TEXT =======================
   {
@@ -285,7 +319,24 @@ export const tools: Tool[] = [
       "Copy the cleaned result.",
     ],
   },
-  { slug: "text-diff", name: "Text Diff Checker", tagline: "Spot every change between two texts.", category: "text", status: "soon", seoTitle: "Text Difference Checker", seoDescription: "Compare two texts and highlight the differences.", addedAt: "2026-07-16" },
+  {
+    slug: "text-diff",
+    name: "Text Diff Checker",
+    tagline: "Spot every change between two texts.",
+    category: "text",
+    status: "live",
+    seoTitle: "Text Diff Checker — Compare Two Texts Online",
+    seoDescription:
+      "Paste two texts and instantly see every added and removed line highlighted. Runs entirely in your browser — nothing uploaded. Free, no signup.",
+    addedAt: "2026-07-19",
+    about:
+      "Compare two versions of anything — a paragraph, a config file, an email — and see exactly what changed. Removed lines are marked in red, added lines in green, line by line. It all happens in your browser, so nothing is uploaded.",
+    howTo: [
+      "Paste the original text on the left.",
+      "Paste the changed text on the right.",
+      "Read the highlighted differences below.",
+    ],
+  },
 
   // ======================= CODE =======================
   {
