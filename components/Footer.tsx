@@ -3,52 +3,47 @@ import {
   categories,
   categoryOrder,
   liveCountIn,
+  liveTools,
   toolsInCategory,
 } from "@/lib/tools";
 import Logo from "@/components/Logo";
-import Mascot from "@/components/Mascot";
+import CookieSettingsLink from "@/components/CookieSettingsLink";
 
 export default function Footer() {
   const columns = categoryOrder.filter((cat) => liveCountIn(cat) > 0);
+  const year = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t border-line bg-surface-2">
-      {/* Sprout, off duty */}
-      <div className="pointer-events-none absolute -top-[52px] right-6 sm:right-12">
-        <Mascot className="h-14 w-auto" mood="sleep" />
-      </div>
-
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-        <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-[1.3fr_repeat(4,1fr)]">
+    <footer className="relative overflow-hidden border-t border-line bg-surface-2">
+      <div className="mx-auto max-w-6xl px-4 pt-14 sm:px-6">
+        <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-[1.4fr_repeat(5,1fr)]">
+          {/* Brand */}
           <div className="col-span-2 max-w-xs sm:col-span-3 lg:col-span-1">
             <Link href="/" className="flex items-center gap-2.5">
-              <Logo className="h-8 w-8 text-accent" />
+              <Logo className="h-8 w-8 text-brand" />
               <span className="text-lg font-bold tracking-tight">UIYard</span>
             </Link>
             <p className="mt-3 text-sm leading-relaxed text-muted">
-              Grown with care in the yard. Free tools for designers and
-              developers — no signup, no uploads, no ads.
+              A growing yard of free tools for designers and developers. No
+              signup, no uploads, no ads.
             </p>
             <a
               href="mailto:link.bernath5@gmail.com?subject=UIYard tool request"
               className="mt-4 inline-block text-sm font-medium text-accent transition-opacity hover:opacity-75"
             >
-              🌱 Request a tool →
+              Request a tool →
             </a>
           </div>
 
+          {/* Tool columns — neutral headers, Lumen-style */}
           {columns.map((cat) => {
-            const meta = categories[cat];
             const items = toolsInCategory(cat).filter((t) => t.status === "live");
             return (
               <div key={cat}>
-                <p
-                  className="text-xs font-semibold uppercase tracking-wider"
-                  style={{ color: meta.color }}
-                >
-                  {meta.label}
+                <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted">
+                  {categories[cat].label}
                 </p>
-                <ul className="mt-3 flex flex-col gap-2">
+                <ul className="mt-3.5 flex flex-col gap-2.5">
                   {items.map((tool) => (
                     <li key={tool.slug}>
                       <Link
@@ -64,21 +59,33 @@ export default function Footer() {
             );
           })}
         </div>
+
+        {/* Giant ghost wordmark */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none select-none pt-10 text-center font-display font-bold leading-none tracking-tight text-foreground/[0.04]"
+          style={{ fontSize: "clamp(5rem, 22vw, 20rem)" }}
+        >
+          UIYard
+        </div>
       </div>
 
+      {/* Status bar — monospace, Lumen-style */}
       <div className="border-t border-line">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-4 text-xs text-muted sm:px-6">
-          <span>© {new Date().getFullYear()} UIYard · Grown with care in the yard</span>
-          <span className="flex gap-5">
-            <Link href="/tools" className="transition-colors hover:text-foreground">
-              All tools
-            </Link>
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-4 font-mono text-xs text-muted sm:px-6">
+          <span>© {year} UIYard</span>
+          <span className="flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            {liveTools.length} tools live · free forever
+          </span>
+          <span className="flex items-center gap-4">
             <Link href="/whats-growing" className="transition-colors hover:text-foreground">
               What&apos;s growing
             </Link>
             <Link href="/about" className="transition-colors hover:text-foreground">
               About
             </Link>
+            <CookieSettingsLink className="cursor-pointer transition-colors hover:text-foreground" />
           </span>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import CookieConsent from "@/components/CookieConsent";
+import CookiePanel from "@/components/CookiePanel";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -59,7 +59,7 @@ export default async function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
-        <CookieConsent />
+        <CookiePanel />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

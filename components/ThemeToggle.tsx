@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { hasConsent } from "@/lib/consent";
 
 export default function ThemeToggle() {
   const [dark, setDark] = useState(false);
@@ -13,8 +14,11 @@ export default function ThemeToggle() {
     const next = !dark;
     setDark(next);
     document.documentElement.classList.toggle("dark", next);
-    // 1-year cookie so the server renders the right theme next visit (no flash).
-    document.cookie = `uiyard-theme=${next ? "dark" : "light"};path=/;max-age=31536000;samesite=lax`;
+    // Persisting the preference is a functional cookie — only with consent.
+    // Without it the theme still switches, just for this visit only.
+    if (hasConsent("functional")) {
+      document.cookie = `uiyard-theme=${next ? "dark" : "light"};path=/;max-age=31536000;samesite=lax`;
+    }
   }
 
   return (

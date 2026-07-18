@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { liveTools, tools, categoryOrder } from "@/lib/tools";
+import { liveTools, tools, categories, categoryOrder, liveCountIn } from "@/lib/tools";
+import ToolIcon from "@/components/ToolIcon";
 import Mascot from "@/components/Mascot";
 import Squiggle from "@/components/Squiggle";
 
@@ -72,6 +73,25 @@ export default function AboutPage() {
             growing yard of {liveTools.length} free tools that run entirely in
             your browser.
           </p>
+
+          <dl
+            className="rise mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4"
+            style={{ ["--i" as string]: 3 }}
+          >
+            {[
+              { n: liveTools.length, l: "tools live" },
+              { n: categoryOrder.length, l: "categories" },
+              { n: 0, l: "signups needed" },
+              { n: 0, l: "data collected" },
+            ].map((s) => (
+              <div key={s.l} className="rounded-xl border border-line bg-surface p-4">
+                <dd className="font-display text-3xl font-bold tracking-tight">
+                  {s.n}
+                </dd>
+                <dt className="mt-1 text-sm text-muted">{s.l}</dt>
+              </div>
+            ))}
+          </dl>
         </div>
       </header>
 
@@ -138,6 +158,73 @@ export default function AboutPage() {
                 </li>
               ))}
             </ul>
+          </section>
+
+          {/* What's in the yard */}
+          <section>
+            <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+              What&apos;s in the yard
+            </h2>
+            <div className="mt-5 flex flex-col gap-4 text-[17px] leading-relaxed text-muted">
+              <p>
+                The tools span {categoryOrder.length} categories — everything a
+                designer or front-end developer reaches for between the big
+                jobs. Here&apos;s the ground so far:
+              </p>
+            </div>
+            <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {categoryOrder.map((cat) => {
+                const meta = categories[cat];
+                const live = liveCountIn(cat);
+                return (
+                  <div
+                    key={cat}
+                    className="flex items-start gap-3 rounded-xl border border-line bg-surface p-4"
+                  >
+                    <span
+                      className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-lg"
+                      style={{ backgroundColor: `${meta.color}1a`, color: meta.color }}
+                    >
+                      <ToolIcon category={cat} className="h-5 w-5" />
+                    </span>
+                    <div>
+                      <p className="text-[15px] font-semibold">
+                        {meta.label}{" "}
+                        <span className="font-normal text-muted">
+                          · {live > 0 ? `${live} live` : "coming soon"}
+                        </span>
+                      </p>
+                      <p className="mt-0.5 text-sm leading-relaxed text-muted">
+                        {meta.blurb}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+
+          {/* Privacy, in depth */}
+          <section>
+            <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+              Why “runs in your browser” matters
+            </h2>
+            <div className="mt-5 flex flex-col gap-4 text-[17px] leading-relaxed text-muted">
+              <p>
+                Most online tools work by sending your data to a server, doing
+                the work there, and sending it back. That means your file, your
+                text or your colours briefly live on someone else&apos;s
+                computer — and you have to trust what happens to them there.
+              </p>
+              <p>
+                UIYard doesn&apos;t work that way. Every tool runs as code
+                inside your own browser tab. Resize an image and the pixels
+                never leave your laptop. Generate a password and it&apos;s
+                created with your browser&apos;s built-in cryptography — never
+                sent, stored or logged. There is simply no server to upload to,
+                which means there&apos;s nothing to leak, sell or lose.
+              </p>
+            </div>
           </section>
 
           {/* Pull quote */}
