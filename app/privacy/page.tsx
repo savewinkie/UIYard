@@ -25,9 +25,11 @@ export default function PrivacyPage() {
         <p className="text-sm font-semibold">The short version</p>
         <p className="mt-2 text-[15px] leading-relaxed text-muted">
           UIYard&apos;s tools run entirely in your browser. There are no
-          accounts, no analytics and no advertising. Nothing you type, paste or
-          upload ever leaves your device. The only cookies we set remember your
-          cookie choice and your light/dark theme — nothing else.
+          accounts and no advertising. Nothing you type, paste or upload ever
+          leaves your device. We count page views with a privacy-friendly,
+          cookieless analytics tool — no tracking cookies, no personal data.
+          The only cookies we set remember your cookie choice and your
+          light/dark theme.
         </p>
       </div>
 
@@ -44,8 +46,11 @@ export default function PrivacyPage() {
             device and are never sent to us or anyone else.
           </p>
           <p className="mt-3">
-            We do not run analytics, fingerprinting or advertising scripts. We
-            do not build profiles or track you across sites.
+            To understand how many people use the yard, we count anonymous page
+            views with Vercel Web Analytics. It is cookieless and privacy-first:
+            it records that a page was visited, but does not use tracking
+            cookies, fingerprint your device, or build a profile of you. We
+            never run advertising scripts or track you across other sites.
           </p>
         </section>
 
@@ -96,11 +101,13 @@ export default function PrivacyPage() {
             Third parties
           </h2>
           <p className="mt-3">
-            The site is served by a hosting provider, which may keep standard
-            server logs (such as IP addresses) for security and reliability, as
-            almost all websites do. Fonts are bundled and served from UIYard
-            itself, so no third-party font or CDN request is made from your
-            browser. We do not embed advertising networks or social trackers.
+            The site is hosted on Vercel, which serves the pages and provides
+            the cookieless page-view analytics described above, and may keep
+            standard server logs (such as IP addresses) for security and
+            reliability, as almost all websites do. Fonts are bundled and served
+            from UIYard itself, so no third-party font or CDN request is made
+            from your browser. We do not embed advertising networks or social
+            trackers.
           </p>
         </section>
 

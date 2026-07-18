@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Manrope, Space_Grotesk, Geist_Mono } from "next/font/google";
 import { cookies } from "next/headers";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookiePanel from "@/components/CookiePanel";
@@ -60,6 +61,9 @@ export default async function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <CookiePanel />
+        {/* Cookieless, privacy-friendly visitor counting. Only collects on a
+            live Vercel deployment — dormant while running locally. */}
+        <Analytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
