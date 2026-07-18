@@ -157,13 +157,19 @@ export default function CookiePanel() {
         </div>
 
         <p className="text-xs leading-5 text-muted">
-          A couple of small cookies remember your choices — nothing is tracked,
-          sold or shared. Read more{" "}
+          We use cookies to enhance your experience. See our{" "}
           <a
-            href="/about"
+            href="/privacy"
             className="underline underline-offset-4 transition-colors hover:text-foreground"
           >
-            about UIYard
+            Privacy Policy
+          </a>{" "}
+          and{" "}
+          <a
+            href="/terms"
+            className="underline underline-offset-4 transition-colors hover:text-foreground"
+          >
+            Terms &amp; Conditions
           </a>
           .
         </p>
