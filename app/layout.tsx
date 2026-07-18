@@ -3,6 +3,7 @@ import { Manrope, Space_Grotesk, Geist_Mono } from "next/font/google";
 import { cookies } from "next/headers";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
+import { SITE_URL } from "@/lib/site";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookiePanel from "@/components/CookiePanel";
@@ -25,7 +26,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://uiyard.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "UIYard — Free tools for designers & developers",
     template: "%s | UIYard",
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     siteName: "UIYard",
     type: "website",
-    url: "https://uiyard.com",
+    url: SITE_URL,
   },
   twitter: {
     card: "summary_large_image",
@@ -71,7 +72,7 @@ export default async function RootLayout({
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "UIYard",
-              url: "https://uiyard.com",
+              url: SITE_URL,
               description:
                 "Free design & developer tools that run entirely in your browser — color palettes, CSS generators, text utilities, converters and more. No signup, no ads, no uploads.",
             }),

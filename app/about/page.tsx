@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { liveTools, tools, categories, categoryOrder, liveCountIn } from "@/lib/tools";
+import { SITE_URL } from "@/lib/site";
 import ToolIcon from "@/components/ToolIcon";
 import Mascot from "@/components/Mascot";
 import Squiggle from "@/components/Squiggle";
@@ -372,7 +373,7 @@ export default function AboutPage() {
               datePublished: "2026-07-17",
               author: { "@type": "Person", name: "Link" },
               publisher: { "@type": "Organization", name: "UIYard" },
-              mainEntityOfPage: "https://uiyard.com/about",
+              mainEntityOfPage: `${SITE_URL}/about`,
             },
             {
               "@context": "https://schema.org",

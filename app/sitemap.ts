@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
 import { liveTools } from "@/lib/tools";
+import { SITE_URL } from "@/lib/site";
 
-const BASE = "https://uiyard.com";
+const BASE = SITE_URL;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
