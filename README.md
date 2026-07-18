@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌱 UIYard
 
-## Getting Started
+**A growing yard of free, no-signup design & developer tools that run entirely in your browser.**
 
-First, run the development server:
+Palettes, gradients, shadows, CSS, fonts, text and code helpers — the small tools you reach for a hundred times a day, all in one place. No accounts, no ads, no uploads.
+
+---
+
+## What we do at UIYard
+
+Every small design job seems to need its own website — one for palettes, one for gradients, one to count words, one to format JSON. Each buried under ads, popups and "create an account" walls. The work takes a minute; the friction doesn't.
+
+UIYard fixes that. It's one place where small, sharp tools grow — each doing a single job, doing it fast, and handing you the result. And it's built on three promises:
+
+- **Free, no accounts** — no signups, no paywalls, no "premium" tiers. Open a tool, use it, leave.
+- **Everything runs in your browser** — your text, colours, images and passwords never leave your machine. There's no server to upload to, so there's nothing to leak, sell or lose.
+- **One job, done fast** — each tool does one thing and hands you the answer, usually as copy-ready CSS or a one-click copy.
+
+The little sprout you see around the site is the gardener. The name is the whole idea: a yard is never "finished" — things get planted, they grow, and new tools open up all the time.
+
+## What's in the yard
+
+Ten categories and counting: **Color · CSS · Text · Coding · Image · Typography · Accessibility · Generators · Converters · Social**.
+
+Tools marked *Soon* aren't placeholders for show — they're the actual queue, and they open up one by one.
+
+## Built with
+
+- [Next.js](https://nextjs.org) (App Router) + TypeScript
+- [Tailwind CSS](https://tailwindcss.com)
+- Deployed on [Vercel](https://vercel.com), with cookieless, privacy-friendly analytics
+
+## Running it locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built and designed by **Link**, one tool at a time. Missing a tool? [Request one](mailto:link.bernath5@gmail.com?subject=UIYard%20tool%20request) — real requests decide what grows next.
