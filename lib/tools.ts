@@ -208,7 +208,24 @@ export const tools: Tool[] = [
   { slug: "css-switch-generator", name: "CSS Switch Generator", tagline: "Toggle switches without a library.", category: "css", status: "soon", seoTitle: "CSS Toggle Switch Generator", seoDescription: "Design an on/off switch and copy the pure CSS.", addedAt: "2026-07-16" },
   { slug: "css-clip-path", name: "Clip-Path Maker", tagline: "Cut shapes out of any element.", category: "css", status: "soon", seoTitle: "CSS Clip-Path Generator", seoDescription: "Visually build polygon clip-paths and copy the CSS.", addedAt: "2026-07-16" },
   { slug: "css-background-pattern", name: "Background Patterns", tagline: "Subtle CSS-only page textures.", category: "css", status: "soon", seoTitle: "CSS Background Pattern Generator", seoDescription: "Pick a repeating CSS background pattern and copy the code.", addedAt: "2026-07-16" },
-  { slug: "css-triangle", name: "CSS Triangle Generator", tagline: "Arrows and carets from pure CSS.", category: "css", status: "soon", seoTitle: "CSS Triangle Generator", seoDescription: "Generate triangles and carets with the border trick.", addedAt: "2026-07-16" },
+  {
+    slug: "css-triangle",
+    name: "CSS Triangle Generator",
+    tagline: "Arrows and carets from pure CSS.",
+    category: "css",
+    status: "live",
+    seoTitle: "CSS Triangle Generator — Pure-CSS Arrows & Carets",
+    seoDescription:
+      "Make CSS triangles and carets with the border trick — pick direction, size and colour, copy the code. Free, no signup, runs in your browser.",
+    addedAt: "2026-07-19",
+    about:
+      "Triangles in CSS come from a clever border trick that's easy to forget. Pick a direction, size and colour, see it live, and copy the exact code.",
+    howTo: [
+      "Choose a direction (up, down, left, right).",
+      "Set the size and colour.",
+      "Copy the CSS.",
+    ],
+  },
   {
     slug: "cubic-bezier",
     name: "Easing Editor",
@@ -416,9 +433,56 @@ export const tools: Tool[] = [
     ],
   },
   { slug: "code-to-image", name: "Code to Image", tagline: "Pretty screenshots of your snippets.", category: "code", status: "soon", seoTitle: "Code Snippet to Image", seoDescription: "Turn code snippets into shareable images.", addedAt: "2026-07-16" },
-  { slug: "html-formatter", name: "HTML Formatter", tagline: "Untangle minified markup.", category: "code", status: "soon", seoTitle: "HTML Formatter & Beautifier", seoDescription: "Format and indent HTML in your browser.", addedAt: "2026-07-16" },
-  { slug: "css-minifier", name: "CSS Minifier", tagline: "Squeeze your stylesheet for production.", category: "code", status: "soon", seoTitle: "CSS Minifier Online", seoDescription: "Minify CSS in your browser and copy the result.", addedAt: "2026-07-16" },
-  { slug: "jwt-decoder", name: "JWT Decoder", tagline: "See what's inside a token, locally.", category: "code", status: "soon", seoTitle: "JWT Decoder — Inspect Tokens Locally", seoDescription: "Decode JWT headers and payloads in your browser.", addedAt: "2026-07-16" },
+  {
+    slug: "html-formatter",
+    name: "HTML Formatter",
+    tagline: "Untangle minified markup.",
+    category: "code",
+    status: "live",
+    seoTitle: "HTML Formatter & Beautifier — Online, In-Browser",
+    seoDescription:
+      "Paste minified or messy HTML and get clean, indented markup back. Runs entirely in your browser — nothing uploaded. Free, no signup.",
+    addedAt: "2026-07-19",
+    about:
+      "Minified or copy-pasted HTML is painful to read. Paste it in and get properly indented, readable markup back — all in your browser.",
+    howTo: ["Paste your HTML.", "Pick an indent size.", "Copy the formatted result."],
+  },
+  {
+    slug: "css-minifier",
+    name: "CSS Minifier",
+    tagline: "Squeeze your stylesheet for production.",
+    category: "code",
+    status: "live",
+    seoTitle: "CSS Minifier — Compress CSS Online",
+    seoDescription:
+      "Minify CSS by stripping comments and whitespace, and see how many bytes you saved. Runs in your browser. Free, no signup.",
+    addedAt: "2026-07-19",
+    about:
+      "Smaller CSS loads faster. This strips comments and needless whitespace and shows you exactly how many bytes you saved — all locally.",
+    howTo: ["Paste your CSS.", "Copy the minified output.", "See the size saving."],
+  },
+  {
+    slug: "jwt-decoder",
+    name: "JWT Decoder",
+    tagline: "See what's inside a token, locally.",
+    category: "code",
+    status: "live",
+    seoTitle: "JWT Decoder — Inspect JSON Web Tokens Locally",
+    seoDescription:
+      "Decode a JWT's header and payload to readable JSON, entirely in your browser — the token is never sent anywhere. Free, no signup.",
+    addedAt: "2026-07-19",
+    about:
+      "Paste a JSON Web Token and read its header and payload as formatted JSON. Everything happens in your browser — your token is never uploaded, so it's safe to inspect.",
+    howTo: [
+      "Paste your JWT.",
+      "Read the decoded header and payload.",
+      "Check the expiry, if there is one.",
+    ],
+    faqs: [
+      { q: "Is my token sent anywhere?", a: "No. Decoding happens entirely in your browser — the token never leaves your machine." },
+      { q: "Does it verify the signature?", a: "No. This tool decodes and displays the contents; it doesn't verify the signature (that needs your secret key)." },
+    ],
+  },
   {
     slug: "url-slug-generator",
     name: "URL Slug Generator",
