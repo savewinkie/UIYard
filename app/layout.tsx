@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Manrope, Space_Grotesk, Geist_Mono } from "next/font/google";
-import { cookies } from "next/headers";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SITE_URL } from "@/lib/site";
@@ -43,20 +42,25 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+// Runs synchronously in <head> before first paint: applies the saved theme so
+// pages stay fully STATIC (no server-side cookie read) with no flash of the
+// wrong theme. See node_modules/next/dist/docs/.../preventing-flash-before-hydration.md
+const themeScript = `(function(){try{var m=document.cookie.match(/(?:^|;\\s*)uiyard-theme=(dark|light)/);if(m&&m[1]==='dark')document.documentElement.classList.add('dark')}catch(e){}})()`;
+
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Light is the default (like 10015). Dark is opt-in and remembered in a cookie.
-  const theme = (await cookies()).get("uiyard-theme")?.value;
-  const isDark = theme === "dark";
-
   return (
     <html
       lang="en"
-      className={`${manrope.variable} ${spaceGrotesk.variable} ${geistMono.variable} h-full antialiased ${isDark ? "dark" : ""}`}
+      suppressHydrationWarning
+      className={`${manrope.variable} ${spaceGrotesk.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="min-h-full flex flex-col">
         <Header />
         <main className="flex-1">{children}</main>

@@ -163,6 +163,15 @@ html {
   animation-delay: calc(var(--i, 0) * 120ms);
 }
 
+/* Tools deck fade-in (replaces a GSAP call — pure CSS, zero JS weight) */
+@keyframes deck-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.deck-in {
+  animation: deck-in 0.7s ease-out both;
+}
+
 /* Scroll reveal (driven by Reveal component) */
 .reveal {
   opacity: 0;
@@ -273,7 +282,8 @@ html {
     animation: none;
   }
   .rise,
-  .reveal {
+  .reveal,
+  .deck-in {
     opacity: 1;
     transform: none;
     animation: none;

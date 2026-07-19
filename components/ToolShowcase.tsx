@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { gsap } from "gsap";
 import { featuredTools, categories, type Tool } from "@/lib/tools";
 import ToolIcon from "@/components/ToolIcon";
 
@@ -183,16 +182,8 @@ function StackCard({ tool, index, total }: { tool: Tool; index: number; total: n
 }
 
 export default function ToolShowcase() {
-  const rootRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const root = rootRef.current;
-    if (!root) return;
-    gsap.fromTo(root, { opacity: 0 }, { opacity: 1, duration: 1, ease: "power2.out" });
-  }, []);
-
   return (
-    <div ref={rootRef}>
+    <div className="deck-in">
       {featuredTools.map((tool, i) => (
         <StackCard key={tool.slug} tool={tool} index={i} total={featuredTools.length} />
       ))}
