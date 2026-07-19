@@ -81,9 +81,11 @@ const paths: Record<ToolCategory, React.ReactNode> = {
 export default function ToolIcon({
   category,
   className = "h-5 w-5",
+  style,
 }: {
   category: ToolCategory;
   className?: string;
+  style?: React.CSSProperties;
 }) {
   return (
     <svg
@@ -94,6 +96,7 @@ export default function ToolIcon({
       strokeLinecap="round"
       strokeLinejoin="round"
       className={className}
+      style={style}
       aria-hidden="true"
     >
       {paths[category]}

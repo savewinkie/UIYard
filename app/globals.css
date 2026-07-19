@@ -172,6 +172,27 @@ html {
   animation: deck-in 0.7s ease-out both;
 }
 
+/* Tool cards — each card's category colour is its hover identity.
+   Plain CSS (not Tailwind arbitrary variants) so it's fully reliable. */
+.tool-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.tool-card-arrow {
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+a.tool-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow-hover);
+  border-color: var(--cat);
+}
+a.tool-card:hover .tool-card-title,
+a.tool-card:hover .tool-card-arrow {
+  color: var(--cat);
+}
+a.tool-card:hover .tool-card-arrow {
+  transform: translateX(2px);
+}
+
 /* Scroll reveal (driven by Reveal component) */
 .reveal {
   opacity: 0;
