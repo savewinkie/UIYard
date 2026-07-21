@@ -193,6 +193,16 @@ a.tool-card:hover .tool-card-arrow {
   transform: translateX(2px);
 }
 
+/* Dropdown panels (header search & categories) — quick fade + rise on open */
+@keyframes pop-in {
+  from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.pop-in {
+  animation: pop-in 0.18s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: top center;
+}
+
 /* Scroll reveal (driven by Reveal component) */
 .reveal {
   opacity: 0;
@@ -304,7 +314,8 @@ a.tool-card:hover .tool-card-arrow {
   }
   .rise,
   .reveal,
-  .deck-in {
+  .deck-in,
+  .pop-in {
     opacity: 1;
     transform: none;
     animation: none;

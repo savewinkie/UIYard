@@ -30,7 +30,8 @@ export default function Home() {
       <section className="hero-glow relative overflow-hidden">
         <div className="mx-auto flex min-h-[calc(100dvh-4rem)] max-w-7xl items-center px-4 sm:px-6">
           <div className="grid w-full items-center gap-12 py-16 lg:grid-cols-[1.02fr_0.98fr]">
-            <div className="order-2">
+            {/* Floating-cards art: desktop/laptop only — hidden on phones */}
+            <div className="order-2 hidden lg:block">
               <HeroScene />
             </div>
 

@@ -1,7 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async redirects() {
+    return [
+      // Tool was renamed shortly after launch — keep the old URL working.
+      {
+        source: "/tools/background-remover",
+        destination: "/tools/transparent-background",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

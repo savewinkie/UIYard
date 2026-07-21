@@ -24,13 +24,24 @@ export default function SearchDropdown({
   const searching = q.length > 0;
   const open = !collapsed && (searching || browse);
 
+  // Rank matches like autocomplete: names that START with the query first,
+  // then words inside the name, then substrings, then tagline/category.
+  function score(t: Tool): number {
+    const name = t.name.toLowerCase();
+    if (name.startsWith(q)) return 0;
+    if (name.split(/[\s/&-]+/).some((w) => w.startsWith(q))) return 1;
+    if (name.includes(q)) return 2;
+    if (t.tagline.toLowerCase().includes(q)) return 3;
+    if (t.category.includes(q)) return 4;
+    return 5;
+  }
+
   const results: Tool[] = searching
-    ? tools.filter(
-        (t) =>
-          t.name.toLowerCase().includes(q) ||
-          t.tagline.toLowerCase().includes(q) ||
-          t.category.includes(q)
-      )
+    ? tools
+        .map((t) => ({ t, s: score(t) }))
+        .filter((r) => r.s < 5)
+        .sort((a, b) => a.s - b.s || a.t.name.localeCompare(b.t.name))
+        .map((r) => r.t)
     : tools;
 
   useEffect(() => {
@@ -116,7 +127,7 @@ export default function SearchDropdown({
       </form>
 
       {open && (
-        <div className="absolute left-0 right-0 top-[calc(100%+8px)] z-50 overflow-hidden rounded-2xl border border-line bg-surface shadow-[0_24px_60px_-20px_rgb(33_29_64_/_0.35)]">
+        <div className="pop-in absolute left-0 right-0 top-[calc(100%+8px)] z-50 overflow-hidden rounded-2xl border border-line bg-surface shadow-[0_24px_60px_-20px_rgb(33_29_64_/_0.35)]">
           {results.length > 0 ? (
             <ul className="max-h-80 overflow-y-auto p-2">
               {results.map((tool) => (

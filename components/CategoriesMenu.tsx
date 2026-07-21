@@ -56,7 +56,7 @@ export default function CategoriesMenu() {
       </button>
 
       {open && (
-        <div className="absolute right-0 top-[calc(100%+10px)] z-50 max-h-[72vh] w-80 overflow-y-auto rounded-2xl border border-line bg-surface p-1.5 shadow-[0_24px_60px_-20px_rgb(42_29_24_/_0.3)]">
+        <div className="pop-in absolute right-0 top-[calc(100%+10px)] z-50 max-h-[min(24rem,65vh)] w-64 overflow-y-auto rounded-2xl border border-line bg-surface p-1.5 shadow-[0_24px_60px_-20px_rgb(42_29_24_/_0.3)]">
           {categoryOrder.map((cat, idx) => {
             const meta = categories[cat];
             const items = toolsInCategory(cat);
@@ -67,22 +67,22 @@ export default function CategoriesMenu() {
                 <button
                   onClick={() => setExpanded(isOpen ? null : cat)}
                   aria-expanded={isOpen}
-                  className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left transition-colors hover:bg-accent-soft/50"
+                  className="flex w-full items-center gap-2.5 rounded-xl px-2.5 py-2 text-left transition-colors hover:bg-accent-soft/50"
                 >
                   <ToolIcon
                     category={cat}
-                    className="h-5 w-5 shrink-0 text-muted"
+                    className="h-[18px] w-[18px] shrink-0 text-muted"
                     style={isOpen ? { color: meta.color } : undefined}
                   />
-                  <span className="font-display flex-1 text-[15px] font-semibold tracking-tight">
+                  <span className="font-display flex-1 text-sm font-semibold tracking-tight">
                     {meta.label}
                   </span>
-                  <span className="text-xs font-medium text-muted">{live}</span>
-                  <Chevron open={isOpen} className="h-3.5 w-3.5 text-muted" />
+                  <span className="text-[11px] font-medium text-muted">{live}</span>
+                  <Chevron open={isOpen} className="h-3 w-3 text-muted" />
                 </button>
 
                 {isOpen && (
-                  <ul className="flex flex-col gap-0.5 pb-2 pl-11 pr-2">
+                  <ul className="flex flex-col gap-0.5 pb-2 pl-9 pr-2">
                     {items.map((t) => (
                       <li key={t.slug}>
                         <Link

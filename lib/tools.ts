@@ -538,27 +538,29 @@ export const tools: Tool[] = [
 
   // ======================= IMAGE =======================
   {
-    slug: "background-remover",
-    name: "Background Remover",
-    tagline: "Erase a background to transparent, in your browser.",
+    slug: "transparent-background",
+    name: "Transparent Background Maker",
+    tagline: "Make any image background transparent.",
     category: "image",
     status: "live",
-    seoTitle: "Background Remover — Make an Image Transparent, In-Browser",
+    seoTitle: "Make a Background Transparent — Free, In-Browser",
     seoDescription:
-      "Click a background to erase it to transparent, then drop in a new colour or image behind your subject. Runs in your browser — nothing uploaded. Free, no signup.",
+      "Turn any image background transparent: the tool scans your image, suggests the background colours it found, and erases them in one tap. Then keep it transparent or drop in a new colour or photo. Nothing uploaded, free, no signup.",
     addedAt: "2026-07-21",
     about:
-      "Make an image's background transparent without an account or an upload. Click the background colour you want gone — the tool erases every matching pixel — then either keep it transparent (a clean PNG cut-out) or drop a new colour or image behind your subject. It works best on photos with a solid, even background; tune the tolerance and edge softness to catch the whole background and keep the edges clean.",
+      "Drop in an image and the tool scans it straight away, finds the colours that make up the background, and lines them up as one-tap suggestions — tap one and every matching pixel turns transparent. You can also click directly on the image to erase exactly the spot you point at. Once the background is gone you have a clean PNG cut-out: keep it transparent, or put a new colour or a whole new photo behind your subject. Two sliders keep it precise — tolerance decides how many similar shades get erased with it, and edge softness smooths the cut so it doesn't look jagged. Everything runs in your browser, so your photo is never uploaded anywhere. It works best on images with a solid, even background — think product shots, logos, screenshots and drawings.",
     howTo: [
-      "Drop in your image.",
-      "Click the background to erase it — click a few spots if it's uneven.",
-      "Adjust tolerance and softness until the edges look right.",
-      "Pick a new backdrop (or leave it transparent) and download the PNG.",
+      "Drop in your image — it's scanned automatically.",
+      "Tap a suggested colour to erase it, or click the background in the image.",
+      "Fine-tune with the tolerance and edge-softness sliders.",
+      "Keep it transparent, or pick a new colour or photo as the background.",
+      "Download your PNG.",
     ],
     faqs: [
       { q: "Is my image uploaded?", a: "No. Everything happens on a canvas inside your browser — the image never touches a server." },
-      { q: "It missed part of the background — why?", a: "It erases by colour. Busy or gradient backgrounds have many colours, so click each area and raise the tolerance. It shines on solid, even backgrounds." },
-      { q: "How do I replace the background with another image?", a: "Set the backdrop to “Image” and choose one — it's placed behind your subject and baked into the downloaded PNG." },
+      { q: "What are the suggested colours?", a: "The tool scans the edges of your image, where the background usually sits, and picks out its main colours. Tap one to erase it everywhere — tap again to undo it." },
+      { q: "It missed part of the background — why?", a: "It erases by colour. Busy or gradient backgrounds contain many colours, so tap several suggestions, click the leftover spots, and raise the tolerance. It shines on solid, even backgrounds." },
+      { q: "How do I replace the background with another image?", a: "Set “New background” to Image and choose one — it's placed behind your subject and baked into the downloaded PNG." },
     ],
   },
   {

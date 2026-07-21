@@ -3,14 +3,60 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 type RGB = { r: number; g: number; b: number };
+type Suggestion = { c: RGB; pct: number };
 type BgMode = "transparent" | "color" | "image";
 
 const MAX_DIM = 1400; // cap processing size so big photos stay responsive
 
-export default function BackgroundRemover() {
+const sameRGB = (a: RGB, b: RGB) => a.r === b.r && a.g === b.g && a.b === b.b;
+
+/**
+ * Auto-scan: the background almost always touches the image border.
+ * Sample the border pixels, bucket similar colours together, and return
+ * the dominant ones (each covering ≥5% of the border) as erase suggestions.
+ */
+function detectBackgrounds(img: ImageData): Suggestion[] {
+  const { width: w, height: h, data: d } = img;
+  const Q = 24; // quantization bucket size
+  const buckets = new Map<string, { c: RGB; n: number }>();
+  let total = 0;
+
+  const sample = (x: number, y: number) => {
+    const i = (y * w + x) * 4;
+    if (d[i + 3] < 200) return; // ignore already-transparent pixels
+    const r = d[i];
+    const g = d[i + 1];
+    const b = d[i + 2];
+    const key = `${Math.round(r / Q)},${Math.round(g / Q)},${Math.round(b / Q)}`;
+    const e = buckets.get(key);
+    if (e) e.n++;
+    else buckets.set(key, { c: { r, g, b }, n: 1 });
+    total++;
+  };
+
+  const step = Math.max(1, Math.floor(Math.max(w, h) / 240));
+  for (let x = 0; x < w; x += step) {
+    sample(x, 0);
+    sample(x, h - 1);
+  }
+  for (let y = 0; y < h; y += step) {
+    sample(0, y);
+    sample(w - 1, y);
+  }
+  if (!total) return [];
+
+  return [...buckets.values()]
+    .sort((a, b) => b.n - a.n)
+    .filter((e) => e.n / total >= 0.05)
+    .slice(0, 4)
+    .map((e) => ({ c: e.c, pct: Math.round((e.n / total) * 100) }));
+}
+
+export default function TransparentBackground() {
   const [loaded, setLoaded] = useState(false);
   const [name, setName] = useState("image");
   const [keys, setKeys] = useState<RGB[]>([]);
+  const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [tolerance, setTolerance] = useState(48);
   const [softness, setSoftness] = useState(16);
   const [bgMode, setBgMode] = useState<BgMode>("transparent");
@@ -70,13 +116,21 @@ export default function BackgroundRemover() {
       tmp.height = h;
       const tctx = tmp.getContext("2d", { willReadFrequently: true })!;
       tctx.drawImage(img, 0, 0, w, h);
-      baseData.current = tctx.getImageData(0, 0, w, h);
+      const data = tctx.getImageData(0, 0, w, h);
+      baseData.current = data;
+      setSuggestions(detectBackgrounds(data));
       setName(file.name.replace(/\.[^.]+$/, ""));
       setKeys([]);
       setLoaded(true);
       URL.revokeObjectURL(url);
     };
     img.src = url;
+  }
+
+  function toggleSuggestion(c: RGB) {
+    setKeys((prev) =>
+      prev.some((k) => sameRGB(k, c)) ? prev.filter((k) => !sameRGB(k, c)) : [...prev, c]
+    );
   }
 
   function pickAt(e: React.MouseEvent<HTMLCanvasElement>) {
@@ -192,13 +246,46 @@ export default function BackgroundRemover() {
           />
         </div>
         <p className="text-center text-xs text-muted">
-          Click any part of the background to erase that colour. Click a few spots for uneven backgrounds.
+          Tap a detected colour on the right — or click the background in the image itself.
         </p>
       </div>
 
       {/* Controls */}
       <div className="flex flex-col gap-5 rounded-2xl border border-line bg-surface p-5">
-        <div className="flex items-center justify-between">
+        {/* Auto-scan suggestions */}
+        {suggestions.length > 0 && (
+          <div>
+            <p className="mb-2 text-xs font-medium uppercase tracking-wider text-muted">
+              Found in the background — tap to erase
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {suggestions.map((s, i) => {
+                const applied = keys.some((k) => sameRGB(k, s.c));
+                return (
+                  <button
+                    key={i}
+                    onClick={() => toggleSuggestion(s.c)}
+                    aria-pressed={applied}
+                    title={`rgb(${s.c.r}, ${s.c.g}, ${s.c.b}) — ${s.pct}% of the edges`}
+                    className={`flex items-center gap-2 rounded-lg border px-2 py-1.5 text-xs font-medium transition-colors ${
+                      applied
+                        ? "border-accent bg-accent-soft text-accent"
+                        : "border-line text-muted hover:border-accent/40 hover:text-accent"
+                    }`}
+                  >
+                    <span
+                      className="h-5 w-5 rounded border border-line"
+                      style={{ backgroundColor: `rgb(${s.c.r}, ${s.c.g}, ${s.c.b})` }}
+                    />
+                    {applied ? "Erasing ✓" : `${s.pct}%`}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        <div className="flex items-center justify-between border-t border-line pt-4">
           <span className="text-sm font-semibold">
             {keys.length} colour{keys.length === 1 ? "" : "s"} erased
           </span>
@@ -223,14 +310,16 @@ export default function BackgroundRemover() {
         <label className="flex flex-col gap-2 text-xs font-medium uppercase tracking-wider text-muted">
           <span className="flex justify-between">Tolerance <span className="font-mono">{tolerance}</span></span>
           <input type="range" min={5} max={150} value={tolerance} onChange={(e) => setTolerance(Number(e.target.value))} className="accent-[var(--accent)]" />
+          <span className="text-[10px] normal-case tracking-normal">Higher = erases more similar shades too.</span>
         </label>
         <label className="flex flex-col gap-2 text-xs font-medium uppercase tracking-wider text-muted">
           <span className="flex justify-between">Edge softness <span className="font-mono">{softness}</span></span>
           <input type="range" min={1} max={60} value={softness} onChange={(e) => setSoftness(Number(e.target.value))} className="accent-[var(--accent)]" />
+          <span className="text-[10px] normal-case tracking-normal">Smooths the cut edge so it doesn&apos;t look jagged.</span>
         </label>
 
         <div className="border-t border-line pt-4">
-          <p className="mb-2 text-xs font-medium uppercase tracking-wider text-muted">Backdrop</p>
+          <p className="mb-2 text-xs font-medium uppercase tracking-wider text-muted">New background</p>
           <div className="grid grid-cols-3 gap-2">
             {([
               { id: "transparent", label: "None" },
