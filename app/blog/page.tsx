@@ -6,7 +6,7 @@ import Reveal from "@/components/Reveal";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Notes from the yard — new tools, quick how-to guides and the thinking behind UIYard. A fresh post most weeks.",
+    "The UIYard blog — quick guides, design notes and opinions for designers and developers. Practical reads, a fresh post most weeks.",
   alternates: { canonical: "/blog" },
 };
 
@@ -25,7 +25,8 @@ export default function BlogPage() {
             The UIYard blog
           </h1>
           <p className="rise mt-7 max-w-2xl text-xl leading-relaxed text-muted" style={{ ["--i" as string]: 2 }}>
-            New tools, short how-to guides and the thinking behind the yard — a fresh post most weeks.
+            Quick guides, design notes and the odd opinion — practical reads for designers and
+            developers, and the thinking behind the yard. A fresh post most weeks.
           </p>
         </div>
       </header>

@@ -4,18 +4,17 @@ import ThemeToggle from "@/components/ThemeToggle";
 import MobileMenu from "@/components/MobileMenu";
 import Wordmark from "@/components/Wordmark";
 
-const NAV = [
-  { href: "/tools", label: "Tools", show: "sm" },
+const NAV: { href: string; label: string; show: "sm" | "lg" }[] = [
   { href: "/blog", label: "Blog", show: "sm" },
-  { href: "/about", label: "About", show: "lg" },
-] as const;
+  { href: "/about", label: "About", show: "sm" },
+];
 
 export default function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-surface/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link href="/" className="shrink-0" aria-label="UIYard — home">
-          <Wordmark className="text-xl sm:text-[1.6rem]" />
+          <Wordmark />
         </Link>
 
         <nav className="flex items-center gap-0.5 sm:gap-1.5">

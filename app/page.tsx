@@ -179,6 +179,43 @@ export default function Home() {
               </Reveal>
             );
           })}
+
+          {/* Round the grid out to 12 + point to what's next */}
+          <Reveal delay={categoryOrder.length * 70}>
+            <Link
+              href="/request"
+              className="group flex h-full items-center gap-4 rounded-2xl border border-dashed border-accent/40 bg-accent-soft/40 p-5 transition-[transform,box-shadow,border-color] hover:-translate-y-1 hover:border-accent/60"
+            >
+              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-accent-soft text-accent">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+              </span>
+              <div className="min-w-0">
+                <p className="font-semibold tracking-tight text-accent-ink">Request a tool</p>
+                <p className="truncate text-sm text-muted">Can&apos;t find it? Ask for it.</p>
+              </div>
+              <span className="ml-auto shrink-0 text-accent transition-transform group-hover:translate-x-0.5">→</span>
+            </Link>
+          </Reveal>
+          <Reveal delay={(categoryOrder.length + 1) * 70}>
+            <Link
+              href="/blog"
+              className="group flex h-full items-center gap-4 rounded-2xl border border-dashed border-line bg-surface p-5 transition-[transform,box-shadow,border-color] hover:-translate-y-1 hover:border-accent/40"
+            >
+              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-surface-2 text-muted">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
+                  <path d="M5 5h11M5 10h11M5 15h7" />
+                  <path d="M20 5v14" />
+                </svg>
+              </span>
+              <div className="min-w-0">
+                <p className="font-semibold tracking-tight">From the blog</p>
+                <p className="truncate text-sm text-muted">Guides &amp; notes from the yard.</p>
+              </div>
+              <span className="ml-auto shrink-0 text-muted transition-transform group-hover:translate-x-0.5">→</span>
+            </Link>
+          </Reveal>
         </div>
       </section>
 
