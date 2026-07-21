@@ -74,8 +74,8 @@ export default function CategoriesMenu() {
                 >
                   <ToolIcon
                     category={cat}
-                    className="h-[18px] w-[18px] shrink-0 text-muted"
-                    style={isOpen ? { color: meta.color } : undefined}
+                    className="h-[18px] w-[18px] shrink-0"
+                    style={{ color: meta.color }}
                   />
                   <span className="font-display flex-1 text-sm font-semibold tracking-tight">
                     {meta.label}
