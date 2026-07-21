@@ -18,6 +18,9 @@ export const CONSENT_COOKIE = "uiyard-consent";
 export const CONSENT_VERSION = 1;
 /** Dispatch this on document to reopen the cookie panel (e.g. footer link). */
 export const OPEN_COOKIE_SETTINGS_EVENT = "uiyard:cookie-settings";
+/** Fired on document whenever consent is saved, so live features (e.g. the
+ *  analytics gate) can react immediately without a page reload. */
+export const CONSENT_CHANGED_EVENT = "uiyard:consent-changed";
 
 const YEAR = 60 * 60 * 24 * 365;
 
@@ -58,6 +61,9 @@ export function writeConsent(prefs: ConsentPrefs): void {
   if (!prefs.functional) {
     document.cookie = "uiyard-theme=;path=/;max-age=0";
   }
+
+  // Let live features (analytics gate, etc.) respond without a reload.
+  document.dispatchEvent(new CustomEvent(CONSENT_CHANGED_EVENT));
 }
 
 export function hasConsent(category: keyof ConsentPrefs): boolean {

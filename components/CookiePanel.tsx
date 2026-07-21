@@ -216,7 +216,7 @@ export default function CookiePanel() {
               />
               <PrefRow
                 title="Analytics"
-                desc="UIYard runs no analytics today; your choice is saved in case that ever changes."
+                desc="Lets us count visits with privacy-friendly analytics — no personal data, no cross-site tracking. Off unless you allow it."
                 checked={prefs.analytics}
                 onToggle={() => setPrefs((p) => ({ ...p, analytics: !p.analytics }))}
               />

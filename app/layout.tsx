@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Manrope, Space_Grotesk, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Analytics } from "@vercel/analytics/next";
 import { SITE_URL } from "@/lib/site";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookiePanel from "@/components/CookiePanel";
+import AnalyticsGate from "@/components/AnalyticsGate";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -66,9 +66,10 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <CookiePanel />
-        {/* Cookieless, privacy-friendly visitor counting. Only collects on a
-            live Vercel deployment — dormant while running locally. */}
-        <Analytics />
+        {/* Privacy-friendly, cookieless visitor counting — but only switched on
+            once the visitor allows the "analytics" category (see AnalyticsGate).
+            Only collects on a live Vercel deployment; dormant while local. */}
+        <AnalyticsGate />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
