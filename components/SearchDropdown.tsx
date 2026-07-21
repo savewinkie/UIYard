@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { tools, type Tool } from "@/lib/tools";
+import { useAnimatedOpen } from "@/lib/useAnimatedOpen";
 import ToolIcon from "@/components/ToolIcon";
 import Mascot from "@/components/Mascot";
 
@@ -23,6 +24,7 @@ export default function SearchDropdown({
   const q = value.trim().toLowerCase();
   const searching = q.length > 0;
   const open = !collapsed && (searching || browse);
+  const { mounted, closing } = useAnimatedOpen(open);
 
   // Rank matches like autocomplete: names that START with the query first,
   // then words inside the name, then substrings, then tagline/category.
@@ -126,8 +128,8 @@ export default function SearchDropdown({
         </button>
       </form>
 
-      {open && (
-        <div className="pop-in absolute left-0 right-0 top-[calc(100%+8px)] z-50 overflow-hidden rounded-2xl border border-line bg-surface shadow-[0_24px_60px_-20px_rgb(33_29_64_/_0.35)]">
+      {mounted && (
+        <div className={`${closing ? "panel-out" : "panel-in"} absolute left-0 right-0 top-[calc(100%+8px)] z-50 overflow-hidden rounded-2xl border border-line bg-surface shadow-[0_24px_60px_-20px_rgb(33_29_64_/_0.35)]`}>
           {results.length > 0 ? (
             <ul className="max-h-80 overflow-y-auto p-2">
               {results.map((tool) => (

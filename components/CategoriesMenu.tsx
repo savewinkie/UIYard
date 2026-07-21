@@ -9,6 +9,7 @@ import {
   liveCountIn,
   type ToolCategory,
 } from "@/lib/tools";
+import { useAnimatedOpen } from "@/lib/useAnimatedOpen";
 import ToolIcon from "@/components/ToolIcon";
 
 function Chevron({ open, className = "" }: { open: boolean; className?: string }) {
@@ -30,6 +31,7 @@ function Chevron({ open, className = "" }: { open: boolean; className?: string }
 export default function CategoriesMenu() {
   const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState<ToolCategory | null>(null);
+  const { mounted, closing } = useAnimatedOpen(open);
   const wrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -55,8 +57,8 @@ export default function CategoriesMenu() {
         <Chevron open={open} className="h-3.5 w-3.5" />
       </button>
 
-      {open && (
-        <div className="pop-in absolute right-0 top-[calc(100%+10px)] z-50 max-h-[min(24rem,65vh)] w-64 overflow-y-auto rounded-2xl border border-line bg-surface p-1.5 shadow-[0_24px_60px_-20px_rgb(42_29_24_/_0.3)]">
+      {mounted && (
+        <div className={`${closing ? "panel-out" : "panel-in"} absolute right-0 top-[calc(100%+10px)] z-50 max-h-[min(24rem,65vh)] w-64 overflow-y-auto rounded-2xl border border-line bg-surface p-1.5 shadow-[0_24px_60px_-20px_rgb(42_29_24_/_0.3)]`}>
           {categoryOrder.map((cat, idx) => {
             const meta = categories[cat];
             const items = toolsInCategory(cat);
@@ -81,7 +83,7 @@ export default function CategoriesMenu() {
                   <Chevron open={isOpen} className="h-3 w-3 text-muted" />
                 </button>
 
-                {isOpen && (
+                <div className={`acc-body ${isOpen ? "open" : ""}`}>
                   <ul className="flex flex-col gap-0.5 pb-2 pl-9 pr-2">
                     {items.map((t) => (
                       <li key={t.slug}>
@@ -109,7 +111,7 @@ export default function CategoriesMenu() {
                       </Link>
                     </li>
                   </ul>
-                )}
+                </div>
               </div>
             );
           })}

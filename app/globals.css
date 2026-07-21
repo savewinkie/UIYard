@@ -193,14 +193,39 @@ a.tool-card:hover .tool-card-arrow {
   transform: translateX(2px);
 }
 
-/* Dropdown panels (header search & categories) — quick fade + rise on open */
-@keyframes pop-in {
-  from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+/* Dropdown panels (header search & categories) — springy open, soft close.
+   Panels stay mounted through the exit via lib/useAnimatedOpen. */
+@keyframes panel-in {
+  from { opacity: 0; transform: translateY(-10px) scale(0.96); }
+  55%  { opacity: 1; }
   to   { opacity: 1; transform: translateY(0) scale(1); }
 }
-.pop-in {
-  animation: pop-in 0.18s cubic-bezier(0.22, 1, 0.36, 1) both;
+@keyframes panel-out {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to   { opacity: 0; transform: translateY(-8px) scale(0.97); }
+}
+.panel-in {
+  animation: panel-in 0.28s cubic-bezier(0.34, 1.35, 0.44, 1) both;
   transform-origin: top center;
+}
+.panel-out {
+  animation: panel-out 0.16s cubic-bezier(0.4, 0, 1, 1) both;
+  transform-origin: top center;
+  pointer-events: none;
+}
+
+/* Category accordion rows — smooth expand/collapse via the grid-rows trick */
+.acc-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.acc-body.open {
+  grid-template-rows: 1fr;
+}
+.acc-body > * {
+  overflow: hidden;
+  min-height: 0;
 }
 
 /* Scroll reveal (driven by Reveal component) */
@@ -315,10 +340,17 @@ a.tool-card:hover .tool-card-arrow {
   .rise,
   .reveal,
   .deck-in,
-  .pop-in {
+  .panel-in {
     opacity: 1;
     transform: none;
     animation: none;
+  }
+  .panel-out {
+    animation: none;
+    opacity: 1;
+  }
+  .acc-body {
+    transition: none;
   }
   .draw-in path {
     stroke-dashoffset: 0;
