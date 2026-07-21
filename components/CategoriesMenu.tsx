@@ -31,7 +31,7 @@ function Chevron({ open, className = "" }: { open: boolean; className?: string }
 export default function CategoriesMenu() {
   const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState<ToolCategory | null>(null);
-  const { mounted, closing } = useAnimatedOpen(open);
+  const { mounted, closing } = useAnimatedOpen(open, 380);
   const wrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -69,7 +69,8 @@ export default function CategoriesMenu() {
                 <button
                   onClick={() => setExpanded(isOpen ? null : cat)}
                   aria-expanded={isOpen}
-                  className="flex w-full items-center gap-2.5 rounded-xl px-2.5 py-2 text-left transition-colors hover:bg-accent-soft/50"
+                  style={{ ["--i" as string]: idx }}
+                  className="menu-item flex w-full items-center gap-2.5 rounded-xl px-2.5 py-2 text-left transition-colors hover:bg-accent-soft/50"
                 >
                   <ToolIcon
                     category={cat}

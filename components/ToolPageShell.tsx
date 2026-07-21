@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { categories, getTool, liveTools } from "@/lib/tools";
+import { SITE_URL } from "@/lib/site";
 import ToolCard from "@/components/ToolCard";
 import ToolIcon from "@/components/ToolIcon";
 import Reveal from "@/components/Reveal";
@@ -22,8 +23,49 @@ export default function ToolPageShell({
     ...liveTools.filter((t) => t.slug !== slug && t.category !== tool.category),
   ].slice(0, 3);
 
+  // Structured data (JSON-LD) for richer Google results — a free web app,
+  // its breadcrumb trail, and its FAQ (when the tool has one). All @graph nodes
+  // share the single @context above.
+  const canonical = `${SITE_URL}/tools/${slug}`;
+  const graph: Record<string, unknown>[] = [
+    {
+      "@type": "SoftwareApplication",
+      name: tool.name,
+      applicationCategory: "DesignApplication",
+      operatingSystem: "Any (runs in a web browser)",
+      url: canonical,
+      description: tool.seoDescription,
+      isAccessibleForFree: true,
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      publisher: { "@type": "Organization", name: "UIYard", url: SITE_URL },
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "UIYard", item: SITE_URL },
+        { "@type": "ListItem", position: 2, name: `${meta.label} Tools`, item: `${SITE_URL}/tools?q=${tool.category}` },
+        { "@type": "ListItem", position: 3, name: tool.name, item: canonical },
+      ],
+    },
+  ];
+  if (tool.faqs?.length) {
+    graph.push({
+      "@type": "FAQPage",
+      mainEntity: tool.faqs.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    });
+  }
+  const jsonLd = { "@context": "https://schema.org", "@graph": graph };
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Header band */}
       <div className="hero-glow border-b border-line">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:py-14">

@@ -193,25 +193,35 @@ a.tool-card:hover .tool-card-arrow {
   transform: translateX(2px);
 }
 
-/* Dropdown panels (header search & categories) — springy open, soft close.
-   Panels stay mounted through the exit via lib/useAnimatedOpen. */
+/* Dropdown panels (header search & categories) — blur-in, springy overshoot,
+   soft blur-out. Timing matches the approved preview at 0.5×. Panels stay
+   mounted through the exit via lib/useAnimatedOpen; rows cascade via --i. */
 @keyframes panel-in {
-  from { opacity: 0; transform: translateY(-10px) scale(0.96); }
+  0%   { opacity: 0; transform: translateY(-8px) scale(0.955); filter: blur(10px); }
   55%  { opacity: 1; }
-  to   { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 }
 @keyframes panel-out {
-  from { opacity: 1; transform: translateY(0) scale(1); }
-  to   { opacity: 0; transform: translateY(-8px) scale(0.97); }
+  from { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+  to   { opacity: 0; transform: translateY(-7px) scale(0.97); filter: blur(8px); }
 }
 .panel-in {
-  animation: panel-in 0.28s cubic-bezier(0.34, 1.35, 0.44, 1) both;
+  animation: panel-in 0.84s cubic-bezier(0.34, 1.32, 0.44, 1) both;
   transform-origin: top center;
 }
 .panel-out {
-  animation: panel-out 0.16s cubic-bezier(0.4, 0, 1, 1) both;
+  animation: panel-out 0.36s cubic-bezier(0.4, 0, 1, 1) both;
   transform-origin: top center;
   pointer-events: none;
+}
+/* Staggered rows — set --i to the row index on each .menu-item */
+@keyframes menu-item-in {
+  from { opacity: 0; transform: translateX(10px) scale(0.96); filter: blur(8px); }
+  to   { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
+}
+.panel-in .menu-item {
+  animation: menu-item-in 0.8s cubic-bezier(0.34, 1.3, 0.44, 1) both;
+  animation-delay: calc(var(--i, 0) * 0.09s);
 }
 
 /* Category accordion rows — smooth expand/collapse via the grid-rows trick */
@@ -340,9 +350,11 @@ a.tool-card:hover .tool-card-arrow {
   .rise,
   .reveal,
   .deck-in,
-  .panel-in {
+  .panel-in,
+  .panel-in .menu-item {
     opacity: 1;
     transform: none;
+    filter: none;
     animation: none;
   }
   .panel-out {

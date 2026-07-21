@@ -2,6 +2,7 @@ import Link from "next/link";
 import {
   tools,
   liveTools,
+  featuredTools,
   categories,
   categoryOrder,
   toolsInCategory,
@@ -181,48 +182,33 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------- Tools by category ---------- */}
+      {/* ---------- Popular tools ---------- */}
       <section className="mx-auto max-w-6xl px-4 pb-6 pt-20 sm:px-6">
-        {categoryOrder.map((cat) => {
-          const items = toolsInCategory(cat);
-          if (items.length === 0) return null;
-          const meta = categories[cat];
-          return (
-            <div key={cat} className="mb-16">
-              <Reveal>
-                <div className="flex items-end justify-between gap-4">
-                  <div className="flex items-center gap-3.5">
-                    <span
-                      className="grid h-11 w-11 place-items-center rounded-2xl"
-                      style={{ backgroundColor: `${meta.color}1a`, color: meta.color }}
-                    >
-                      <ToolIcon category={cat} className="h-5 w-5" />
-                    </span>
-                    <div>
-                      <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
-                        {meta.label} Tools
-                      </h2>
-                      <p className="text-sm text-muted">{meta.blurb}</p>
-                    </div>
-                  </div>
-                  <Link
-                    href={`/tools?q=${cat}`}
-                    className="shrink-0 text-sm font-medium text-accent transition-opacity hover:opacity-75"
-                  >
-                    See all →
-                  </Link>
-                </div>
-              </Reveal>
-              <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                {items.map((tool, i) => (
-                  <Reveal key={tool.slug} delay={i * 80}>
-                    <ToolCard tool={tool} />
-                  </Reveal>
-                ))}
-              </div>
+        <Reveal>
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+                Popular tools
+              </h2>
+              <p className="mt-2 text-muted">
+                The ones people reach for most — jump straight in.
+              </p>
             </div>
-          );
-        })}
+            <Link
+              href="/tools"
+              className="shrink-0 text-sm font-medium text-accent transition-opacity hover:opacity-75"
+            >
+              Browse all {liveTools.length} tools →
+            </Link>
+          </div>
+        </Reveal>
+        <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {featuredTools.slice(0, 6).map((tool, i) => (
+            <Reveal key={tool.slug} delay={i * 70}>
+              <ToolCard tool={tool} />
+            </Reveal>
+          ))}
+        </div>
       </section>
 
       {/* ---------- About ---------- */}

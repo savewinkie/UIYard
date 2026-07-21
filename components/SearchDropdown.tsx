@@ -24,7 +24,7 @@ export default function SearchDropdown({
   const q = value.trim().toLowerCase();
   const searching = q.length > 0;
   const open = !collapsed && (searching || browse);
-  const { mounted, closing } = useAnimatedOpen(open);
+  const { mounted, closing } = useAnimatedOpen(open, 380);
 
   // Rank matches like autocomplete: names that START with the query first,
   // then words inside the name, then substrings, then tagline/category.
@@ -132,12 +132,13 @@ export default function SearchDropdown({
         <div className={`${closing ? "panel-out" : "panel-in"} absolute left-0 right-0 top-[calc(100%+8px)] z-50 overflow-hidden rounded-2xl border border-line bg-surface shadow-[0_24px_60px_-20px_rgb(33_29_64_/_0.35)]`}>
           {results.length > 0 ? (
             <ul className="max-h-80 overflow-y-auto p-2">
-              {results.map((tool) => (
+              {results.map((tool, i) => (
                 <li key={tool.slug}>
                   <Link
                     href={tool.status === "live" ? `/tools/${tool.slug}` : `/tools?q=${tool.category}`}
                     onClick={closeAll}
-                    className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-accent-soft"
+                    style={{ ["--i" as string]: i }}
+                    className="menu-item flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-accent-soft"
                   >
                     <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-accent-soft text-accent">
                       <ToolIcon category={tool.category} className="h-4.5 w-4.5" />
