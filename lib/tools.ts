@@ -205,9 +205,43 @@ export const tools: Tool[] = [
       "Copy the CSS — the HTML tag is in a comment when one is needed.",
     ],
   },
-  { slug: "css-switch-generator", name: "CSS Switch Generator", tagline: "Toggle switches without a library.", category: "css", status: "soon", seoTitle: "CSS Toggle Switch Generator", seoDescription: "Design an on/off switch and copy the pure CSS.", addedAt: "2026-07-16" },
+  {
+    slug: "css-switch-generator",
+    name: "CSS Switch Generator",
+    tagline: "Toggle switches without a library.",
+    category: "css",
+    status: "live",
+    seoTitle: "CSS Toggle Switch Generator — Pure CSS On/Off Switch",
+    seoDescription:
+      "Design an iOS-style toggle switch — size, colours and corner radius — and copy pure HTML and CSS. No JavaScript, no libraries. Free, no signup.",
+    addedAt: "2026-07-21",
+    about:
+      "A toggle switch is just a checkbox and a bit of CSS — no library needed. Tune the size, colours and roundness, try it live, and copy the HTML and CSS. It toggles with the native checkbox, so it works without a line of JavaScript.",
+    howTo: [
+      "Set the width, height and corner radius.",
+      "Pick the on, off and knob colours.",
+      "Copy the HTML and CSS into your project.",
+    ],
+  },
   { slug: "css-clip-path", name: "Clip-Path Maker", tagline: "Cut shapes out of any element.", category: "css", status: "soon", seoTitle: "CSS Clip-Path Generator", seoDescription: "Visually build polygon clip-paths and copy the CSS.", addedAt: "2026-07-16" },
-  { slug: "css-background-pattern", name: "Background Patterns", tagline: "Subtle CSS-only page textures.", category: "css", status: "soon", seoTitle: "CSS Background Pattern Generator", seoDescription: "Pick a repeating CSS background pattern and copy the code.", addedAt: "2026-07-16" },
+  {
+    slug: "css-background-pattern",
+    name: "Background Patterns",
+    tagline: "Subtle CSS-only page textures.",
+    category: "css",
+    status: "live",
+    seoTitle: "CSS Background Pattern Generator — Dots, Grid & Stripes",
+    seoDescription:
+      "Pick a pure-CSS background pattern — dots, grid, stripes, checkerboard, cross-hatch — recolour it and copy the code. No images. Free, no signup.",
+    addedAt: "2026-07-21",
+    about:
+      "A subtle pattern gives a flat section just enough texture. These are built entirely from CSS gradients — no image files to load. Pick a pattern, set the two colours and the scale, and copy the CSS.",
+    howTo: [
+      "Choose a pattern from the grid.",
+      "Set the pattern and background colours, and the size.",
+      "Copy the CSS into your stylesheet.",
+    ],
+  },
   {
     slug: "css-triangle",
     name: "CSS Triangle Generator",
@@ -526,8 +560,50 @@ export const tools: Tool[] = [
   },
   { slug: "image-compressor", name: "Image Compressor", tagline: "Smaller files, same look.", category: "image", status: "soon", seoTitle: "Image Compressor Online", seoDescription: "Compress images in your browser. Nothing uploaded.", addedAt: "2026-07-16" },
   { slug: "image-color-extractor", name: "Image Color Extractor", tagline: "The exact hex of any pixel.", category: "image", status: "soon", seoTitle: "Image Color Picker & Extractor", seoDescription: "Pick colors straight from an uploaded image.", addedAt: "2026-07-16" },
-  { slug: "image-to-base64", name: "Image to Base64", tagline: "Inline any image as a data URI.", category: "image", status: "soon", seoTitle: "Image to Base64 Converter", seoDescription: "Convert images to Base64 data URIs in your browser.", addedAt: "2026-07-16" },
-  { slug: "svg-to-png", name: "SVG to PNG", tagline: "Rasterize vectors at any size.", category: "image", status: "soon", seoTitle: "SVG to PNG Converter", seoDescription: "Convert SVG files to PNG at any resolution, in-browser.", addedAt: "2026-07-16" },
+  {
+    slug: "image-to-base64",
+    name: "Image to Base64",
+    tagline: "Inline any image as a data URI.",
+    category: "image",
+    status: "live",
+    seoTitle: "Image to Base64 Converter — Data URI, In-Browser",
+    seoDescription:
+      "Convert an image to a Base64 data URI and copy it as a raw string, an <img> tag or a CSS background. Runs in your browser — nothing uploaded. Free, no signup.",
+    addedAt: "2026-07-21",
+    about:
+      "A Base64 data URI lets you embed a small image straight into your HTML or CSS — no extra network request. Drop an image in and copy it as a raw data URI, an <img> tag or a CSS background. Everything happens in your browser.",
+    howTo: [
+      "Drop an image or click to browse.",
+      "Pick the output: raw data URI, <img> tag or CSS.",
+      "Copy the result.",
+    ],
+    faqs: [
+      { q: "Is my image uploaded?", a: "No. The file is read and encoded inside your browser — it never touches a server." },
+      { q: "When should I use a data URI?", a: "For small images like icons. Base64 is about 33% larger than the file, so big images bloat your HTML — link those normally." },
+    ],
+  },
+  {
+    slug: "svg-to-png",
+    name: "SVG to PNG",
+    tagline: "Rasterize vectors at any size.",
+    category: "image",
+    status: "live",
+    seoTitle: "SVG to PNG Converter — Export at 1×–4×, In-Browser",
+    seoDescription:
+      "Paste or upload an SVG and download a crisp PNG at 1×, 2×, 3× or 4×, with an optional background colour. Runs in your browser — nothing uploaded. Free, no signup.",
+    addedAt: "2026-07-21",
+    about:
+      "Sometimes you need a PNG, not an SVG — for an app that won't take vectors, or a social image. Paste your SVG or upload the file, choose a scale for a crisp result on retina screens, optionally add a background, and download the PNG. It's all rendered in your browser.",
+    howTo: [
+      "Paste your SVG markup or upload an .svg file.",
+      "Pick a scale (2× is a good default) and a background.",
+      "Download the PNG.",
+    ],
+    faqs: [
+      { q: "Why is my exported PNG blurry?", a: "Bump the scale to 2× or higher — that renders at more pixels, which stays sharp on retina screens and when enlarged." },
+      { q: "Is my file uploaded?", a: "No. The SVG is rasterised on a canvas in your browser; nothing is sent anywhere." },
+    ],
+  },
 
   // ======================= TYPOGRAPHY =======================
   {
@@ -711,7 +787,28 @@ export const tools: Tool[] = [
   },
 
   // ======================= SOCIAL =======================
-  { slug: "og-meta-generator", name: "OG Meta Generator", tagline: "Perfect link previews for every share.", category: "social", status: "soon", seoTitle: "Open Graph Meta Tag Generator", seoDescription: "Generate Open Graph and Twitter meta tags for your site.", addedAt: "2026-07-16" },
+  {
+    slug: "og-meta-generator",
+    name: "OG Meta Generator",
+    tagline: "Perfect link previews for every share.",
+    category: "social",
+    status: "live",
+    seoTitle: "Open Graph Meta Tag Generator — OG & Twitter Cards",
+    seoDescription:
+      "Fill in your title, description and image and copy ready-to-paste Open Graph and Twitter Card meta tags, with a live preview of the share card. Free, no signup.",
+    addedAt: "2026-07-21",
+    about:
+      "When someone shares your link, Open Graph and Twitter meta tags decide the title, description and image that show up. Fill in the fields, watch the preview card update, and copy tags you can paste straight into your page's <head>.",
+    howTo: [
+      "Type your title, description and page URL.",
+      "Add a preview image URL (1200×630px is the safe size).",
+      "Copy the generated meta tags into your <head>.",
+    ],
+    faqs: [
+      { q: "What image size should I use?", a: "1200×630 pixels works across Facebook, LinkedIn, X and most others. Keep important content away from the edges." },
+      { q: "Where do these tags go?", a: "Inside the <head> of the page you're sharing. Each page can have its own tags for its own preview." },
+    ],
+  },
   { slug: "social-image-resizer", name: "Social Image Resizer", tagline: "Every platform's sizes, one upload.", category: "social", status: "soon", seoTitle: "Social Media Image Resizer", seoDescription: "Resize one image to every social platform's dimensions.", addedAt: "2026-07-16" },
   { slug: "youtube-thumbnail-tester", name: "Thumbnail Tester", tagline: "Preview your thumbnail like a real feed.", category: "social", status: "soon", seoTitle: "YouTube Thumbnail Preview Tester", seoDescription: "Preview your thumbnail at real YouTube sizes.", addedAt: "2026-07-16" },
 ];
