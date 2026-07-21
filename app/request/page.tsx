@@ -50,7 +50,7 @@ export default function RequestPage() {
                   {[
                     "You describe the job — not a spec, just the thing you need done.",
                     "It goes on the real queue (the cards marked “Soon” you see around the site).",
-                    "When it’s built, it opens up free for everyone — and we email you if you left one.",
+                    "When it’s built, it opens up free for everyone — and we’ll reply to your email to let you know.",
                   ].map((step, i) => (
                     <li key={i} className="flex gap-3 text-sm leading-relaxed text-muted">
                       <span className="grid h-6 w-6 shrink-0 place-items-center rounded-lg bg-accent-soft text-xs font-semibold text-accent">
