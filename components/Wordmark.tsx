@@ -18,7 +18,7 @@ export default function Wordmark({ className = "" }: { className?: string }) {
   if (HAS_LOGO) {
     return (
       // eslint-disable-next-line @next/next/no-img-element
-      <img src="/logo.png" alt="UIYard" className={`h-7 w-auto sm:h-8 dark:invert ${className}`} />
+      <img src="/logo.png" alt="UIYard" className={`h-8 w-auto sm:h-9 dark:invert ${className}`} />
     );
   }
 
