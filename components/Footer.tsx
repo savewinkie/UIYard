@@ -21,12 +21,12 @@ export default function Footer() {
               A growing yard of free tools for designers and developers. No
               signup, no uploads, no ads.
             </p>
-            <a
-              href="mailto:link.bernath5@gmail.com?subject=UIYard tool request"
+            <Link
+              href="/request"
               className="mt-4 inline-block text-sm font-medium text-accent transition-opacity hover:opacity-75"
             >
               Request a tool →
-            </a>
+            </Link>
           </div>
 
           {/* Popular tools */}
@@ -68,17 +68,19 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/blog" className="text-muted transition-colors hover:text-foreground">
+                  Blog
+                </Link>
+              </li>
+              <li>
                 <Link href="/whats-growing" className="text-muted transition-colors hover:text-foreground">
                   What&apos;s growing
                 </Link>
               </li>
               <li>
-                <a
-                  href="mailto:link.bernath5@gmail.com?subject=UIYard tool request"
-                  className="text-muted transition-colors hover:text-foreground"
-                >
+                <Link href="/request" className="text-muted transition-colors hover:text-foreground">
                   Request a tool
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>

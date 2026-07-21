@@ -267,12 +267,12 @@ export default function Home() {
                 <span className="text-sm font-semibold text-accent-ink">
                   Your idea here
                 </span>
-                <a
-                  href="mailto:link.bernath5@gmail.com?subject=UIYard tool request"
+                <Link
+                  href="/request"
                   className="text-xs font-medium text-accent transition-opacity hover:opacity-75"
                 >
                   Request a tool →
-                </a>
+                </Link>
               </div>
             </div>
           </Reveal>
