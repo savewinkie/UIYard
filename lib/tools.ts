@@ -538,6 +538,30 @@ export const tools: Tool[] = [
 
   // ======================= IMAGE =======================
   {
+    slug: "background-remover",
+    name: "Background Remover",
+    tagline: "Erase a background to transparent, in your browser.",
+    category: "image",
+    status: "live",
+    seoTitle: "Background Remover — Make an Image Transparent, In-Browser",
+    seoDescription:
+      "Click a background to erase it to transparent, then drop in a new colour or image behind your subject. Runs in your browser — nothing uploaded. Free, no signup.",
+    addedAt: "2026-07-21",
+    about:
+      "Make an image's background transparent without an account or an upload. Click the background colour you want gone — the tool erases every matching pixel — then either keep it transparent (a clean PNG cut-out) or drop a new colour or image behind your subject. It works best on photos with a solid, even background; tune the tolerance and edge softness to catch the whole background and keep the edges clean.",
+    howTo: [
+      "Drop in your image.",
+      "Click the background to erase it — click a few spots if it's uneven.",
+      "Adjust tolerance and softness until the edges look right.",
+      "Pick a new backdrop (or leave it transparent) and download the PNG.",
+    ],
+    faqs: [
+      { q: "Is my image uploaded?", a: "No. Everything happens on a canvas inside your browser — the image never touches a server." },
+      { q: "It missed part of the background — why?", a: "It erases by colour. Busy or gradient backgrounds have many colours, so click each area and raise the tolerance. It shines on solid, even backgrounds." },
+      { q: "How do I replace the background with another image?", a: "Set the backdrop to “Image” and choose one — it's placed behind your subject and baked into the downloaded PNG." },
+    ],
+  },
+  {
     slug: "image-resizer",
     name: "Image Resizer",
     tagline: "Exact dimensions, right in your browser.",

@@ -16,11 +16,15 @@ export default function SearchDropdown({
 }) {
   const router = useRouter();
   const [value, setValue] = useState("");
-  const [open, setOpen] = useState(false);
+  const [browse, setBrowse] = useState(false); // chevron toggle → show all tools
+  const [collapsed, setCollapsed] = useState(true); // click-outside / escape override
   const wrapRef = useRef<HTMLDivElement>(null);
 
   const q = value.trim().toLowerCase();
-  const results: Tool[] = q
+  const searching = q.length > 0;
+  const open = !collapsed && (searching || browse);
+
+  const results: Tool[] = searching
     ? tools.filter(
         (t) =>
           t.name.toLowerCase().includes(q) ||
@@ -32,22 +36,28 @@ export default function SearchDropdown({
   useEffect(() => {
     function onClickOutside(e: MouseEvent) {
       if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) {
-        setOpen(false);
+        setCollapsed(true);
+        setBrowse(false);
       }
     }
     document.addEventListener("mousedown", onClickOutside);
     return () => document.removeEventListener("mousedown", onClickOutside);
   }, []);
 
+  function closeAll() {
+    setBrowse(false);
+    setCollapsed(true);
+  }
+
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     const firstLive = results.find((t) => t.status === "live");
     if (firstLive) {
       router.push(`/tools/${firstLive.slug}`);
-      setOpen(false);
+      closeAll();
     } else if (results.length > 0) {
       router.push(`/tools?q=${results[0].category}`);
-      setOpen(false);
+      closeAll();
     }
   }
 
@@ -71,13 +81,38 @@ export default function SearchDropdown({
           autoFocus={autoFocus}
           onChange={(e) => {
             setValue(e.target.value);
-            setOpen(true);
+            setCollapsed(false);
           }}
-          onFocus={() => setOpen(true)}
+          onKeyDown={(e) => {
+            if (e.key === "Escape") closeAll();
+          }}
           placeholder="Search tools…"
           aria-label="Search tools"
-          className="w-full rounded-2xl border border-line bg-surface py-2.5 pl-11 pr-4 text-sm font-medium outline-none transition-[transform,box-shadow,border-color,color] placeholder:text-muted focus:border-accent/60 focus:shadow-[0_0_0_3px_var(--accent-soft)]"
+          className="w-full rounded-2xl border border-line bg-surface py-2.5 pl-11 pr-11 text-sm font-medium outline-none transition-[transform,box-shadow,border-color,color] placeholder:text-muted focus:border-accent/60 focus:shadow-[0_0_0_3px_var(--accent-soft)]"
         />
+        {/* Chevron — the ONLY thing that reveals the full tool list */}
+        <button
+          type="button"
+          onClick={() => {
+            setBrowse((b) => !b);
+            setCollapsed(false);
+          }}
+          aria-expanded={browse}
+          aria-label={browse ? "Hide all tools" : "Browse all tools"}
+          className="absolute right-2.5 top-1/2 grid h-7 w-7 -translate-y-1/2 place-items-center rounded-lg text-muted transition-colors hover:bg-accent-soft hover:text-accent"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className={`h-4 w-4 transition-transform ${open && browse ? "rotate-180" : ""}`}
+          >
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </button>
       </form>
 
       {open && (
@@ -88,7 +123,7 @@ export default function SearchDropdown({
                 <li key={tool.slug}>
                   <Link
                     href={tool.status === "live" ? `/tools/${tool.slug}` : `/tools?q=${tool.category}`}
-                    onClick={() => setOpen(false)}
+                    onClick={closeAll}
                     className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-accent-soft"
                   >
                     <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-accent-soft text-accent">
@@ -103,9 +138,7 @@ export default function SearchDropdown({
                           </span>
                         )}
                       </span>
-                      <span className="block truncate text-xs text-muted">
-                        {tool.tagline}
-                      </span>
+                      <span className="block truncate text-xs text-muted">{tool.tagline}</span>
                     </span>
                   </Link>
                 </li>
