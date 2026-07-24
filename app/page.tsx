@@ -183,17 +183,18 @@ export default function Home() {
           {/* Round the grid out to 12 + point to what's next */}
           <Reveal delay={categoryOrder.length * 70}>
             <Link
-              href="/request"
+              href="/roadmap"
               className="group flex h-full items-center gap-4 rounded-2xl border border-dashed border-accent/40 bg-accent-soft/40 p-5 transition-[transform,box-shadow,border-color] hover:-translate-y-1 hover:border-accent/60"
             >
               <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-accent-soft text-accent">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
-                  <path d="M12 5v14M5 12h14" />
+                  <path d="M4 18 10 12l4 3 6-7" />
+                  <path d="M15 6h5v5" />
                 </svg>
               </span>
               <div className="min-w-0">
-                <p className="font-semibold tracking-tight text-accent-ink">Request a tool</p>
-                <p className="truncate text-sm text-muted">Can&apos;t find it? Ask for it.</p>
+                <p className="font-semibold tracking-tight text-accent-ink">Roadmap</p>
+                <p className="truncate text-sm text-muted">See what&apos;s coming next.</p>
               </div>
               <span className="ml-auto shrink-0 text-accent transition-transform group-hover:translate-x-0.5">→</span>
             </Link>
@@ -305,10 +306,10 @@ export default function Home() {
                   Your idea here
                 </span>
                 <Link
-                  href="/request"
+                  href="/roadmap"
                   className="text-xs font-medium text-accent transition-opacity hover:opacity-75"
                 >
-                  Request a tool →
+                  Suggest a tool →
                 </Link>
               </div>
             </div>

@@ -22,10 +22,10 @@ export default function Footer() {
               signup, no uploads, no ads.
             </p>
             <Link
-              href="/request"
+              href="/roadmap"
               className="mt-4 inline-block text-sm font-medium text-accent transition-opacity hover:opacity-75"
             >
-              Request a tool →
+              See the roadmap →
             </Link>
           </div>
 
@@ -78,8 +78,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/request" className="text-muted transition-colors hover:text-foreground">
-                  Request a tool
+                <Link href="/roadmap" className="text-muted transition-colors hover:text-foreground">
+                  Roadmap
                 </Link>
               </li>
             </ul>

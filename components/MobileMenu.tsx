@@ -6,7 +6,7 @@ import Link from "next/link";
 const LINKS = [
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
-  { href: "/request", label: "Request a tool" },
+  { href: "/roadmap", label: "Roadmap" },
 ];
 
 export default function MobileMenu() {
